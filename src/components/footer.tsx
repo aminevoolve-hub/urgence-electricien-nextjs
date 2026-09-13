@@ -17,7 +17,7 @@ export default function Footer() {
         if (uploadedLogo) return uploadedLogo;
       } catch (err) {}
     }
-    return "/images/logo-urgence-electricien.svg"; // Default logo fallback
+    return "/images/logo-urgence-electricien.png"; // Default logo fallback
   });
 
   // Watch for logo updates from branding page

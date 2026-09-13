@@ -5,7 +5,7 @@ const uploadedFiles: Record<string, { name: string; type: string; size: number; 
 
 // Store current configuration in memory (shared with /api/admin/config)
 export let siteConfig = {
-  logo: "/images/logo-urgence-electricien.svg",
+  logo: "/images/logo-urgence-electricien.png",
   favicon: "/favicon.ico",
   lastUpdated: new Date().toISOString(),
 };

@@ -30,7 +30,7 @@ export default function Header() {
       }
     }
     console.log("Header: using default logo");
-    return "/images/logo-urgence-electricien.svg"; // Default logo fallback
+    return "/images/logo-urgence-electricien.png"; // Default logo fallback
   });
 
   // Watch for logo updates from branding page
