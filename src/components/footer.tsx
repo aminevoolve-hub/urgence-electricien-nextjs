@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { site } from "@/lib/site";
@@ -9,19 +9,16 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
-  const [logoUrl, setLogoUrl] = useState("/images/logo-electricien-montreal.png");
-
-  useEffect(() => {
-    // Check localStorage for uploaded logo
-    try {
-      const uploadedLogo = localStorage.getItem("uploadedLogo");
-      if (uploadedLogo) {
-        setLogoUrl(uploadedLogo);
-      }
-    } catch (err) {
-      console.log("localStorage read failed");
+  // Initialize logo from localStorage immediately to avoid flash
+  const [logoUrl, setLogoUrl] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const uploadedLogo = localStorage.getItem("uploadedLogo");
+        if (uploadedLogo) return uploadedLogo;
+      } catch (err) {}
     }
-  }, []);
+    return "/images/logo-electricien-montreal.png";
+  });
 
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">

@@ -17,31 +17,21 @@ export default function Header() {
   const [zonesOpen, setZonesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
-  const [logoUrl, setLogoUrl] = useState("/images/logo-urgence-electricien.svg");
+
+  // Initialize logo from localStorage immediately to avoid flash
+  const [logoUrl, setLogoUrl] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const uploadedLogo = localStorage.getItem("uploadedLogo");
+        if (uploadedLogo) return uploadedLogo;
+      } catch (err) {}
+    }
+    return "/images/logo-urgence-electricien.svg";
+  });
+
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { scrollY } = useScroll();
-
-  useEffect(() => {
-    // Check localStorage first (uploaded logo)
-    try {
-      const uploadedLogo = localStorage.getItem("uploadedLogo");
-      if (uploadedLogo) {
-        setLogoUrl(uploadedLogo);
-        return;
-      }
-    } catch (err) {
-      console.log("localStorage read failed");
-    }
-
-    // Fallback to API config
-    fetch("/api/admin/config")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.logo) setLogoUrl(data.logo);
-      })
-      .catch((err) => console.log("Config fetch failed (using default)", err));
-  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => setScrolledPastHero(latest > 40));
 
