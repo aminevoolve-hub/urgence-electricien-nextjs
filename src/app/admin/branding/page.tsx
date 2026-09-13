@@ -1,12 +1,62 @@
 "use client";
 
 import { useState } from "react";
-import { Save } from "lucide-react";
+import { Save, Upload as UploadIcon } from "lucide-react";
 
 export default function BrandingPage() {
   const [saved, setSaved] = useState(false);
   const [logo, setLogo] = useState("logo-urgence-electricien.svg");
   const [favicon, setFavicon] = useState("favicon.ico");
+  const [logoUploading, setLogoUploading] = useState(false);
+  const [faviconUploading, setFaviconUploading] = useState(false);
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setLogoUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("category", "branding");
+
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.success) {
+        setLogo(file.name);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+    } finally {
+      setLogoUploading(false);
+    }
+  };
+
+  const handleFaviconUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setFaviconUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("category", "branding");
+
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.success) {
+        setFavicon(file.name);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+    } finally {
+      setFaviconUploading(false);
+    }
+  };
 
   const handleSave = () => {
     setSaved(true);
@@ -47,16 +97,31 @@ export default function BrandingPage() {
               <label className="block text-sm font-medium text-navy-900 mb-3">
                 Fichier logo (SVG recommandé)
               </label>
-              <div className="border-2 border-dashed border-navy-300 rounded-lg p-6 text-center cursor-pointer hover:bg-navy-50 transition">
-                <input type="file" className="hidden" accept=".svg,.png" />
-                <div>
-                  <p className="text-sm text-navy-600">
-                    Cliquez pour télécharger
-                  </p>
-                  <p className="text-xs text-navy-500 mt-1">
-                    SVG, PNG (max 2MB)
-                  </p>
-                </div>
+              <div className="border-2 border-dashed border-navy-300 rounded-lg p-6 text-center cursor-pointer hover:bg-navy-50 transition relative">
+                <input
+                  type="file"
+                  className="hidden"
+                  accept=".svg,.png"
+                  onChange={handleLogoUpload}
+                  disabled={logoUploading}
+                  id="logo-input"
+                />
+                <label htmlFor="logo-input" className="block cursor-pointer">
+                  <div>
+                    {logoUploading ? (
+                      <p className="text-sm text-navy-600">Téléchargement en cours...</p>
+                    ) : (
+                      <>
+                        <p className="text-sm text-navy-600">
+                          Cliquez pour télécharger
+                        </p>
+                        <p className="text-xs text-navy-500 mt-1">
+                          SVG, PNG (max 2MB)
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </label>
               </div>
             </div>
           </div>
@@ -78,15 +143,30 @@ export default function BrandingPage() {
                 Fichier favicon
               </label>
               <div className="border-2 border-dashed border-navy-300 rounded-lg p-6 text-center cursor-pointer hover:bg-navy-50 transition">
-                <input type="file" className="hidden" accept=".ico,.png" />
-                <div>
-                  <p className="text-sm text-navy-600">
-                    Cliquez pour télécharger
-                  </p>
-                  <p className="text-xs text-navy-500 mt-1">
-                    ICO, PNG (max 1MB)
-                  </p>
-                </div>
+                <input
+                  type="file"
+                  className="hidden"
+                  accept=".ico,.png"
+                  onChange={handleFaviconUpload}
+                  disabled={faviconUploading}
+                  id="favicon-input"
+                />
+                <label htmlFor="favicon-input" className="block cursor-pointer">
+                  <div>
+                    {faviconUploading ? (
+                      <p className="text-sm text-navy-600">Téléchargement en cours...</p>
+                    ) : (
+                      <>
+                        <p className="text-sm text-navy-600">
+                          Cliquez pour télécharger
+                        </p>
+                        <p className="text-xs text-navy-500 mt-1">
+                          ICO, PNG (max 1MB)
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </label>
               </div>
 
               <p className="text-xs text-navy-500 mt-3">
