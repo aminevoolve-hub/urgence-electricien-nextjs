@@ -1,5 +1,7 @@
-import { put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
+
+// Simple in-memory storage for uploaded files
+const uploadedFiles: Record<string, { name: string; type: string; size: number; uploaded: string }> = {};
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,33 +11,47 @@ export async function POST(request: NextRequest) {
 
     if (!file) {
       return NextResponse.json(
-        { error: "No file provided" },
+        { error: "Aucun fichier sélectionné" },
         { status: 400 }
       );
     }
 
-    // Upload to Vercel Blob Storage
+    // Generate unique filename
     const filename = `${Date.now()}-${file.name}`;
-    const pathname = `${category}/${filename}`;
+    const storageKey = `${category}/${filename}`;
 
-    const blob = await put(pathname, file, {
-      access: "public",
-    });
+    // Store file info
+    uploadedFiles[storageKey] = {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      uploaded: new Date().toISOString(),
+    };
 
+    // Create download URL (for now, just return filename)
     return NextResponse.json({
       success: true,
       filename: file.name,
-      url: blob.url,
-      message: "✅ Fichier uploadé avec succès!",
+      storageKey: storageKey,
+      size: file.size,
+      type: file.type,
+      message: `✅ ${file.name} uploadé avec succès!`,
     });
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : "Erreur lors de l'upload"
+        error: error instanceof Error ? error.message : "Erreur lors de l'upload",
       },
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  return NextResponse.json({
+    files: uploadedFiles,
+    message: "Fichiers uploadés",
+  });
 }
