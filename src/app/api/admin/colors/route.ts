@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export let colorConfig = {
+// Use a global variable that persists during the request
+let colorConfig = {
   primary: "#1E40AF",
-  accent: "#EA580C",
+  accent: "#7e0001",
   secondary: "#0A5C8A",
 };
 

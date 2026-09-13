@@ -1,15 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Save, RotateCcw } from "lucide-react";
 
 export default function CouleursPage() {
   const [saved, setSaved] = useState(false);
   const [colors, setColors] = useState({
     primary: "#1E40AF",
-    accent: "#EA580C",
+    accent: "#7e0001",
     secondary: "#0A5C8A",
   });
+
+  // Load saved colors from localStorage on mount
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem("siteColors");
+      if (cached) {
+        setColors(JSON.parse(cached));
+      }
+    } catch (err) {
+      console.log("Failed to load colors from cache");
+    }
+  }, []);
 
   const handleColorChange = (key: string, value: string) => {
     setColors((prev) => ({ ...prev, [key]: value }));
