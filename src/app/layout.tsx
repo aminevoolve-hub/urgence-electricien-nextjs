@@ -77,6 +77,28 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr-CA">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const colors = JSON.parse(localStorage.getItem('siteColors'));
+                  if (colors) {
+                    const root = document.documentElement;
+                    root.style.setProperty('--amber-400', colors.accent);
+                    root.style.setProperty('--amber-500', colors.accent);
+                    root.style.setProperty('--amber-600', colors.accent);
+                    const style = document.createElement('style');
+                    style.textContent = ':root { --amber-400: ' + colors.accent + ' !important; --amber-500: ' + colors.accent + ' !important; --amber-600: ' + colors.accent + ' !important; }';
+                    document.head.appendChild(style);
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${outfit.variable} ${russoOne.variable} font-sans antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
