@@ -8,41 +8,45 @@ export default function ColorLoader() {
       // Save to localStorage for persistence
       localStorage.setItem("siteColors", JSON.stringify(data));
 
-      // Create a style element with CSS overrides
+      // Update CSS variables that buttons use
+      const root = document.documentElement;
+      root.style.setProperty("--amber-400", data.accent);
+      root.style.setProperty("--amber-500", data.accent);
+      root.style.setProperty("--amber-600", data.accent);
+      root.style.setProperty("--amber-400-light", data.accent + "22");
+      root.style.setProperty("--color-primary", data.primary);
+      root.style.setProperty("--color-accent", data.accent);
+      root.style.setProperty("--color-secondary", data.secondary);
+
+      // Create a style element with CSS overrides for all other amber classes
       const style = document.createElement("style");
       style.textContent = `
         :root {
-          --color-primary: ${data.primary};
-          --color-accent: ${data.accent};
-          --color-secondary: ${data.secondary};
+          --amber-400: ${data.accent} !important;
+          --amber-500: ${data.accent} !important;
+          --amber-600: ${data.accent} !important;
+          --color-primary: ${data.primary} !important;
+          --color-accent: ${data.accent} !important;
+          --color-secondary: ${data.secondary} !important;
         }
 
-        .bg-amber-500, .btn-gradient {
-          background-color: ${data.accent} !important;
-        }
-
-        .hover\\:bg-amber-600:hover {
-          background-color: ${data.accent}dd !important;
-        }
-
-        .text-amber-500 {
+        .bg-amber-500, .text-amber-500, .text-amber-600, .border-amber-500 {
+          --tw-text-opacity: 1 !important;
           color: ${data.accent} !important;
         }
 
-        .hover\\:text-amber-500:hover {
-          color: ${data.accent} !important;
-        }
-
-        .bg-amber-50, .hover\\:bg-amber-50:hover {
+        .bg-amber-50 {
           background-color: ${data.accent}22 !important;
         }
 
-        .border-amber-500 {
-          border-color: ${data.accent} !important;
+        .animate-pulse-ring {
+          animation: pulse-ring-new 2s infinite !important;
         }
 
-        .text-amber-600 {
-          color: ${data.accent} !important;
+        @keyframes pulse-ring-new {
+          0% { box-shadow: 0 0 0 0 ${data.accent}80; }
+          70% { box-shadow: 0 0 0 12px ${data.accent}00; }
+          100% { box-shadow: 0 0 0 0 ${data.accent}00; }
         }
       `;
       document.head.appendChild(style);
