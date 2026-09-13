@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { site } from "@/lib/site";
@@ -9,7 +9,7 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
-  // Initialize logo from localStorage - no fallback default
+  // Initialize logo from localStorage with fallback to default
   const [logoUrl, setLogoUrl] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -17,8 +17,22 @@ export default function Footer() {
         if (uploadedLogo) return uploadedLogo;
       } catch (err) {}
     }
-    return ""; // No default logo - wait for upload
+    return "/images/logo-urgence-electricien.svg"; // Default logo fallback
   });
+
+  // Watch for logo updates from branding page
+  useEffect(() => {
+    const handleLogoUpdate = (e: any) => {
+      console.log("Footer: Received logoUpdated event!");
+      setLogoUrl(e.detail);
+    };
+
+    window.addEventListener("logoUpdated", handleLogoUpdate);
+
+    return () => {
+      window.removeEventListener("logoUpdated", handleLogoUpdate);
+    };
+  }, []);
 
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">

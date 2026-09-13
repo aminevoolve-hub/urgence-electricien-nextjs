@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { Phone, ChevronDown, Menu, MapPin } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
@@ -18,16 +18,34 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
-  // Initialize logo from localStorage - no fallback default
+  // Initialize logo from localStorage with fallback to default
   const [logoUrl, setLogoUrl] = useState(() => {
     if (typeof window !== "undefined") {
       try {
         const uploadedLogo = localStorage.getItem("uploadedLogo");
+        console.log("Header: reading uploadedLogo from localStorage:", uploadedLogo ? `YES (length: ${uploadedLogo.length})` : "NO");
         if (uploadedLogo) return uploadedLogo;
-      } catch (err) {}
+      } catch (err) {
+        console.error("Header: localStorage error:", err);
+      }
     }
-    return ""; // No default logo - wait for upload
+    console.log("Header: using default logo");
+    return "/images/logo-urgence-electricien.svg"; // Default logo fallback
   });
+
+  // Watch for logo updates from branding page
+  useEffect(() => {
+    const handleLogoUpdate = (e: any) => {
+      console.log("Header: Received logoUpdated event!");
+      setLogoUrl(e.detail);
+    };
+
+    window.addEventListener("logoUpdated", handleLogoUpdate);
+
+    return () => {
+      window.removeEventListener("logoUpdated", handleLogoUpdate);
+    };
+  }, []);
 
   const pathname = usePathname();
   const isHome = pathname === "/";

@@ -27,19 +27,39 @@ export default function BrandingPage() {
       console.log("Upload response:", data);
 
       if (data.success) {
-        // Save logo to localStorage
+        // Save logo to localStorage - wait for FileReader to complete before reloading
         const reader = new FileReader();
+        reader.onerror = (error) => {
+          console.error("FileReader error:", error);
+          alert(`❌ Erreur lecture fichier: ${error}`);
+        };
         reader.onload = (e) => {
           const dataUrl = e.target?.result as string;
-          localStorage.setItem("uploadedLogo", dataUrl);
+          console.log("✓ FileReader completed, data URL length:", dataUrl?.length || 0);
+
+          try {
+            localStorage.setItem("uploadedLogo", dataUrl);
+            const verified = localStorage.getItem("uploadedLogo");
+            console.log("✓ Saved to localStorage, verified:", verified ? "YES" : "NO", "length:", verified?.length || 0);
+
+            // Dispatch custom event so header/footer update in same tab
+            window.dispatchEvent(new CustomEvent("logoUpdated", { detail: dataUrl }));
+            console.log("✓ Dispatched logoUpdated event");
+          } catch (err) {
+            console.error("❌ localStorage error:", err);
+            alert(`❌ Erreur sauvegarde: ${err}`);
+            return;
+          }
+
+          setLogo(file.name);
+          setSaved(true);
+          alert(`✅ Logo uploadé avec succès!`);
+          setTimeout(() => {
+            console.log("→ Reloading page...");
+            window.location.reload();
+          }, 500);
         };
         reader.readAsDataURL(file);
-
-        setLogo(file.name);
-        setSaved(true);
-        alert(`✅ Logo uploadé avec succès!`);
-        setTimeout(() => window.location.reload(), 1000);
-        setTimeout(() => setSaved(false), 3000);
       } else {
         alert(`❌ Erreur: ${data.error}`);
       }
