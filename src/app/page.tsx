@@ -12,7 +12,8 @@ import BlogPreview from "@/components/blog-preview";
 import FaqAccordion from "@/components/faq-accordion";
 import CtaSection from "@/components/cta-section";
 import SchemaMarkup from "@/components/schema-markup";
-import { homeFaq } from "@/lib/faq";
+import { homeFaq, values } from "@/lib/faq";
+import { getImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Dépannage électrique d'urgence 24/7 Montréal | CMEQ",
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const heroVideo = getVideo("electricien-commercial-montreal");
+  const valuesImages: Record<string, string | undefined> = {};
+  for (const v of values) valuesImages[v.slug] = getImage("valeurs", v.slug) ?? undefined;
 
   return (
     <>
@@ -32,7 +35,7 @@ export default function HomePage() {
       </div>
       <StatsBar />
       <IntroSection />
-      <ValuesGrid />
+      <ValuesGrid images={valuesImages} />
       <ServicesGrid />
       <WhyUs />
       <ProcessStepper />

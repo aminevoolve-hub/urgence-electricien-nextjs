@@ -3,16 +3,13 @@
 import { useState, useEffect } from "react";
 import { Upload, Trash2, Save, Plus, Edit2 } from "lucide-react";
 import { projects } from "@/lib/projects";
-import { values } from "@/lib/values";
+import { values } from "@/lib/faq";
 import { services } from "@/lib/services";
 
 const PAGES = [
-  { id: "home", label: "Accueil", sections: ["hero", "services", "testimonials"] },
-  { id: "about", label: "À propos", sections: ["hero", "team", "values"] },
-  { id: "services", label: "Services", sections: ["hero", "service-cards", "process"] },
-  { id: "realisations", label: "Réalisations", sections: ["hero", "portfolio"] },
-  { id: "blog", label: "Blog", sections: ["hero", "featured", "posts"] },
-  { id: "contact", label: "Contact", sections: ["hero", "form"] },
+  { id: "home", label: "Accueil", sections: ["valeurs"] },
+  { id: "services", label: "Services", sections: ["service-cards"] },
+  { id: "realisations", label: "Réalisations", sections: ["portfolio"] },
 ];
 
 // Pre-load current site images
@@ -38,8 +35,8 @@ function getDefaultImages() {
     defaults.push({
       id: `default-values-${value.slug}`,
       name: `${value.title}.jpg`,
-      page: "about",
-      section: "values",
+      page: "home",
+      section: "valeurs",
       element: value.title,
       size: "—",
       url: null,
@@ -66,7 +63,7 @@ function getDefaultImages() {
 
 export default function ImagesPage() {
   const [selectedPage, setSelectedPage] = useState("home");
-  const [selectedSection, setSelectedSection] = useState("hero");
+  const [selectedSection, setSelectedSection] = useState("valeurs");
   const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<any[]>([]);
 
@@ -76,7 +73,7 @@ export default function ImagesPage() {
       try {
         const defaults = getDefaultImages();
         const saved = localStorage.getItem("pageImages");
-        const savedImages = saved ? JSON.parse(saved) : [];
+        const savedImages: any[] = saved ? JSON.parse(saved) : [];
 
         // Merge: uploaded images override defaults
         const merged = [

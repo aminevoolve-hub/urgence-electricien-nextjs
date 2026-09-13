@@ -32,7 +32,7 @@ export default function Gallery({
   images: Record<string, string | undefined>;
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const adminImages = usePageImages("portfolio");
+  const adminImages = usePageImages("realisations", "portfolio");
 
   function close() {
     setActiveIndex(null);

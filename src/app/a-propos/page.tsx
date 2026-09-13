@@ -11,7 +11,8 @@ import FeatureRow from "@/components/feature-row";
 import AnimatedHeading from "@/components/animated-heading";
 import Reveal from "@/components/reveal";
 import { site } from "@/lib/site";
-import { whyUs } from "@/lib/faq";
+import { whyUs, values } from "@/lib/faq";
+import { getImage } from "@/lib/images";
 
 const visionPillars = [
   {
@@ -48,6 +49,9 @@ const sections = [
 ];
 
 export default function AboutPage() {
+  const valuesImages: Record<string, string | undefined> = {};
+  for (const v of values) valuesImages[v.slug] = getImage("valeurs", v.slug) ?? undefined;
+
   return (
     <>
       <PageHeader
@@ -133,7 +137,7 @@ export default function AboutPage() {
       </section>
 
       <div id="valeurs" className="scroll-mt-32">
-        <ValuesGrid title="Nos valeurs" />
+        <ValuesGrid title="Nos valeurs" images={valuesImages} />
       </div>
 
       <div id="approche" className="scroll-mt-32">

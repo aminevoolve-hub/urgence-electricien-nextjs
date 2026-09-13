@@ -2,13 +2,18 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { values } from "@/lib/faq";
-import { getImage } from "@/lib/images";
 import { usePageImages, getImageByElement } from "@/lib/usePageImages";
 import SectionContainer from "./section-container";
 import Reveal from "./reveal";
 import AnimatedHeading from "./animated-heading";
 
-export default function ValuesGrid({ title = "Nos valeurs" }: { title?: string }) {
+export default function ValuesGrid({
+  title = "Nos valeurs",
+  images = {},
+}: {
+  title?: string;
+  images?: Record<string, string | undefined>;
+}) {
   const adminImages = usePageImages("home", "valeurs");
 
   return (
@@ -19,7 +24,7 @@ export default function ValuesGrid({ title = "Nos valeurs" }: { title?: string }
           {values.map((v, i) => {
             // First check admin dashboard for image (by element name), then fallback to server files
             const adminImage = getImageByElement(adminImages, v.title);
-            const image = adminImage || getImage("valeurs", v.slug);
+            const image = adminImage || images[v.slug];
             return (
               <Reveal
                 key={v.title}
