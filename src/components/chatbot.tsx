@@ -17,7 +17,7 @@ const questions: { question: string; answer: string }[] = [
   },
   {
     question: "Êtes-vous licenciés RBQ ?",
-    answer: `Oui, tous nos électriciens sont licenciés RBQ (${site.rbq}) et membres de la CCQ.`,
+    answer: "Oui, tous nos électriciens sont licenciés RBQ et membres de la CCQ.",
   },
   {
     question: "Quelle est votre zone de service ?",

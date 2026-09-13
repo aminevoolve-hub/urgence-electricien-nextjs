@@ -45,3 +45,5 @@ next-env.d.ts
 .impeccable/*.png
 .impeccable/live/sessions/
 .impeccable/live/previews/
+
+.vercel
