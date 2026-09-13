@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { site } from "@/lib/site";
@@ -6,6 +9,20 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
+  const [logoUrl, setLogoUrl] = useState("/images/logo-electricien-montreal.png");
+
+  useEffect(() => {
+    // Check localStorage for uploaded logo
+    try {
+      const uploadedLogo = localStorage.getItem("uploadedLogo");
+      if (uploadedLogo) {
+        setLogoUrl(uploadedLogo);
+      }
+    } catch (err) {
+      console.log("localStorage read failed");
+    }
+  }, []);
+
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">
       <div
@@ -17,9 +34,9 @@ export default function Footer() {
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/logo-electricien-montreal.png"
+            src={logoUrl}
             alt={site.name}
-            className="h-28 w-auto"
+            className="h-40 w-auto"
           />
           <p className="mt-4 text-sm text-white">
             Électricien commercial et industriel licencié RBQ, au service de la grande région

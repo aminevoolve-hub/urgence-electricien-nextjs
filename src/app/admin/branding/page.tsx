@@ -27,11 +27,18 @@ export default function BrandingPage() {
       console.log("Upload response:", data);
 
       if (data.success) {
+        // Save logo to localStorage
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const dataUrl = e.target?.result as string;
+          localStorage.setItem("uploadedLogo", dataUrl);
+        };
+        reader.readAsDataURL(file);
+
         setLogo(file.name);
         setSaved(true);
         alert(`✅ Logo uploadé avec succès!`);
-        // Reload config to see changes on main site
-        window.location.reload();
+        setTimeout(() => window.location.reload(), 1000);
         setTimeout(() => setSaved(false), 3000);
       } else {
         alert(`❌ Erreur: ${data.error}`);

@@ -23,7 +23,18 @@ export default function Header() {
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    // Fetch the current config (logo/favicon)
+    // Check localStorage first (uploaded logo)
+    try {
+      const uploadedLogo = localStorage.getItem("uploadedLogo");
+      if (uploadedLogo) {
+        setLogoUrl(uploadedLogo);
+        return;
+      }
+    } catch (err) {
+      console.log("localStorage read failed");
+    }
+
+    // Fallback to API config
     fetch("/api/admin/config")
       .then((res) => res.json())
       .then((data) => {
