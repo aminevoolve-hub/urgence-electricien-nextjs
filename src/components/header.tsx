@@ -18,34 +18,9 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
-  // Initialize logo from localStorage with fallback to default
-  const [logoUrl, setLogoUrl] = useState(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const uploadedLogo = localStorage.getItem("uploadedLogo");
-        console.log("Header: reading uploadedLogo from localStorage:", uploadedLogo ? `YES (length: ${uploadedLogo.length})` : "NO");
-        if (uploadedLogo) return uploadedLogo;
-      } catch (err) {
-        console.error("Header: localStorage error:", err);
-      }
-    }
-    console.log("Header: using default logo");
-    return "/images/logo-urgence-electricien.png"; // Default logo fallback
-  });
+  // Use the logo from public/images folder
+  const [logoUrl] = useState("/images/logo-urgence-electricien.png");
 
-  // Watch for logo updates from branding page
-  useEffect(() => {
-    const handleLogoUpdate = (e: any) => {
-      console.log("Header: Received logoUpdated event!");
-      setLogoUrl(e.detail);
-    };
-
-    window.addEventListener("logoUpdated", handleLogoUpdate);
-
-    return () => {
-      window.removeEventListener("logoUpdated", handleLogoUpdate);
-    };
-  }, []);
 
   const pathname = usePathname();
   const isHome = pathname === "/";

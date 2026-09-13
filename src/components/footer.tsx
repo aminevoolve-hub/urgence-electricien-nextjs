@@ -9,30 +9,8 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
-  // Initialize logo from localStorage with fallback to default
-  const [logoUrl, setLogoUrl] = useState(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const uploadedLogo = localStorage.getItem("uploadedLogo");
-        if (uploadedLogo) return uploadedLogo;
-      } catch (err) {}
-    }
-    return "/images/logo-urgence-electricien.png"; // Default logo fallback
-  });
-
-  // Watch for logo updates from branding page
-  useEffect(() => {
-    const handleLogoUpdate = (e: any) => {
-      console.log("Footer: Received logoUpdated event!");
-      setLogoUrl(e.detail);
-    };
-
-    window.addEventListener("logoUpdated", handleLogoUpdate);
-
-    return () => {
-      window.removeEventListener("logoUpdated", handleLogoUpdate);
-    };
-  }, []);
+  // Use the logo from public/images folder
+  const logoUrl = "/images/logo-urgence-electricien.png";
 
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">
