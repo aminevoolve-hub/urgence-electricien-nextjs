@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Upload, Trash2, Save, Plus, Edit2 } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { values } from "@/lib/values";
+import { services } from "@/lib/services";
 
 const PAGES = [
   { id: "home", label: "Accueil", sections: ["hero", "services", "testimonials"] },
@@ -40,6 +41,20 @@ function getDefaultImages() {
       page: "about",
       section: "values",
       element: value.title,
+      size: "—",
+      url: null,
+      isDefault: true,
+    });
+  });
+
+  // Services images
+  services.forEach((service) => {
+    defaults.push({
+      id: `default-service-${service.slug}`,
+      name: `${service.name}.jpg`,
+      page: "services",
+      section: "service-cards",
+      element: service.name,
       size: "—",
       url: null,
       isDefault: true,
