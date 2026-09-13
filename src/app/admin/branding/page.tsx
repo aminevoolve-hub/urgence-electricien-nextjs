@@ -27,35 +27,22 @@ export default function BrandingPage() {
       console.log("Upload response:", data);
 
       if (data.success) {
-        // Save logo to localStorage - wait for FileReader to complete before reloading
-        const reader = new FileReader();
-        reader.onerror = (error) => {
-          console.error("FileReader error:", error);
-          alert(`❌ Erreur lecture fichier: ${error}`);
-        };
-        reader.onload = (e) => {
-          const dataUrl = e.target?.result as string;
-          console.log("✓ FileReader completed, data URL length:", dataUrl?.length || 0);
+        try {
+          // Save the API response (which contains the fileUrl) directly
+          localStorage.setItem("uploadedLogo", data.fileUrl);
+          console.log("✓ Saved to localStorage, length:", data.fileUrl?.length || 0);
 
-          try {
-            localStorage.setItem("uploadedLogo", dataUrl);
-            const verified = localStorage.getItem("uploadedLogo");
-            console.log("✓ Saved to localStorage, verified:", verified ? "YES" : "NO", "length:", verified?.length || 0);
-
-            // Dispatch custom event so header/footer update in same tab
-            window.dispatchEvent(new CustomEvent("logoUpdated", { detail: dataUrl }));
-            console.log("✓ Dispatched logoUpdated event");
-          } catch (err) {
-            console.error("❌ localStorage error:", err);
-            alert(`❌ Erreur sauvegarde: ${err}`);
-            return;
-          }
+          // Dispatch custom event so header/footer update in same tab
+          window.dispatchEvent(new CustomEvent("logoUpdated", { detail: data.fileUrl }));
+          console.log("✓ Dispatched logoUpdated event");
 
           setLogo(file.name);
           setSaved(true);
           alert(`✅ Logo uploadé avec succès!`);
-        };
-        reader.readAsDataURL(file);
+        } catch (err) {
+          console.error("❌ localStorage error:", err);
+          alert(`❌ Erreur sauvegarde: ${err}`);
+        }
       } else {
         alert(`❌ Erreur: ${data.error}`);
       }
