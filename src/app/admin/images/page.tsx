@@ -167,22 +167,63 @@ export default function ImagesPage() {
           {sectionImages.length === 0 ? (
             <p className="text-navy-500 text-center py-8">Aucune image uploadée pour cette section</p>
           ) : (
-            <div className="space-y-3">
-              {sectionImages.map((img, i) => (
+            <div className="space-y-4">
+              {sectionImages.map((img) => (
                 <div
-                  key={i}
-                  className="flex items-center justify-between p-4 bg-navy-50 rounded-lg border border-navy-100 group"
+                  key={img.id}
+                  className="p-4 bg-navy-50 rounded-lg border border-navy-100"
                 >
-                  <div className="flex-1">
-                    <p className="font-medium text-navy-900">{img.name}</p>
-                    <p className="text-xs text-navy-500">{img.size}</p>
+                  {/* Image Preview */}
+                  {img.url && (
+                    <div className="mb-4">
+                      <img
+                        src={img.url}
+                        alt={img.name}
+                        className="max-h-48 rounded-lg object-cover w-full"
+                      />
+                    </div>
+                  )}
+
+                  {/* Image Details */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex-1">
+                      <p className="font-medium text-navy-900">{img.name}</p>
+                      <p className="text-xs text-navy-500">{img.size}</p>
+                    </div>
+                    <button
+                      onClick={() => handleDelete(img.id)}
+                      className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleDelete(img.id)}
-                    className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+
+                  {/* Replace Image */}
+                  <label className="block w-full">
+                    <div className="px-4 py-2 bg-white border border-navy-200 rounded-lg text-center cursor-pointer hover:bg-navy-50 transition text-sm text-navy-600 font-medium">
+                      📝 Remplacer l&apos;image
+                    </div>
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept=".png,.jpg,.jpeg,.webp"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            const updatedImages = images.map(i =>
+                              i.id === img.id
+                                ? { ...i, name: file.name, url: event.target?.result as string, size: `${(file.size / 1024).toFixed(0)} KB` }
+                                : i
+                            );
+                            setImages(updatedImages);
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                  </label>
                 </div>
               ))}
             </div>
