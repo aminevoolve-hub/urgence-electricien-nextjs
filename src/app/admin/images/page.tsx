@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Upload, Trash2, Save, Plus, Edit2 } from "lucide-react";
+import { projects } from "@/lib/projects";
+import { values } from "@/lib/values";
 
 const PAGES = [
   { id: "home", label: "Accueil", sections: ["hero", "services", "testimonials"] },
@@ -12,6 +14,41 @@ const PAGES = [
   { id: "contact", label: "Contact", sections: ["hero", "form"] },
 ];
 
+// Pre-load current site images
+function getDefaultImages() {
+  const defaults: any[] = [];
+
+  // Portfolio images
+  projects.forEach((project) => {
+    defaults.push({
+      id: `default-portfolio-${project.slug}`,
+      name: `${project.title}.jpg`,
+      page: "realisations",
+      section: "portfolio",
+      element: project.title,
+      size: "—",
+      url: null,
+      isDefault: true,
+    });
+  });
+
+  // Values images
+  values.forEach((value) => {
+    defaults.push({
+      id: `default-values-${value.slug}`,
+      name: `${value.title}.jpg`,
+      page: "about",
+      section: "values",
+      element: value.title,
+      size: "—",
+      url: null,
+      isDefault: true,
+    });
+  });
+
+  return defaults;
+}
+
 export default function ImagesPage() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [selectedSection, setSelectedSection] = useState("hero");
@@ -21,14 +58,21 @@ export default function ImagesPage() {
   const [images, setImages] = useState<any[]>([]);
   const [showUpload, setShowUpload] = useState(false);
 
-  // Load images from localStorage on mount
+  // Load images from localStorage + defaults on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
+        const defaults = getDefaultImages();
         const saved = localStorage.getItem("pageImages");
-        if (saved) {
-          setImages(JSON.parse(saved));
-        }
+        const savedImages = saved ? JSON.parse(saved) : [];
+
+        // Merge: uploaded images override defaults
+        const merged = [
+          ...defaults.filter(d => !savedImages.some(s => s.element === d.element && s.page === d.page)),
+          ...savedImages
+        ];
+
+        setImages(merged);
       } catch (err) {
         console.error("Error loading images:", err);
       }
@@ -212,6 +256,7 @@ export default function ImagesPage() {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-amber-400 mb-6">
               Images de {currentPage?.label} - {selectedSection}
+              <span className="text-sm font-normal text-amber-600 ml-2">({sectionImages.length} position{sectionImages.length > 1 ? 's' : ''})</span>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -221,15 +266,20 @@ export default function ImagesPage() {
                   className="bg-navy-900 border border-amber-700 rounded-lg overflow-hidden hover:border-amber-500 transition"
                 >
                   {/* Image Preview */}
-                  {img.url && (
-                    <div className="relative h-48 overflow-hidden bg-navy-950">
+                  <div className="relative h-48 overflow-hidden bg-navy-950">
+                    {img.url ? (
                       <img
                         src={img.url}
                         alt={img.name}
                         className="h-full w-full object-cover"
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-navy-900 to-navy-800 border-b border-amber-700">
+                        <p className="text-4xl mb-2">📸</p>
+                        <p className="text-amber-600 text-sm text-center px-4">En attente d'image</p>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Image Details */}
                   <div className="p-4">
