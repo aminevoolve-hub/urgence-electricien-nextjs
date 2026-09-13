@@ -83,7 +83,7 @@ export default function Footer() {
               <Mail className="h-4 w-4 text-amber-400" />
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </li>
-            <li className="text-white">Licence RBQ : {site.rbq}</li>
+            <li className="text-white">Électricien licencié CMEQ</li>
           </ul>
         </div>
       </div>
