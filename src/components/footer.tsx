@@ -39,8 +39,8 @@ export default function Footer() {
             className="h-40 w-auto"
           />
           <p className="mt-4 text-sm text-white">
-            Électricien commercial et industriel licencié RBQ, au service de la grande région
-            métropolitaine de Montréal depuis {site.founded}.
+            Urgence électricien 24/7. Dépannage d'urgence disponible 24 heures sur 24, 7 jours sur 7.
+            Électricien licencié RBQ au service de la grande région métropolitaine de Montréal.
           </p>
         </div>
 
