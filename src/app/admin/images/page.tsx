@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Upload, Trash2, Save } from "lucide-react";
+import { Upload, Trash2, Save, Plus, Edit2 } from "lucide-react";
 
 const PAGES = [
   { id: "home", label: "Accueil", sections: ["hero", "services", "testimonials"] },
@@ -19,6 +19,7 @@ export default function ImagesPage() {
   const [uploaded, setUploaded] = useState(false);
   const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<any[]>([]);
+  const [showUpload, setShowUpload] = useState(false);
 
   // Load images from localStorage on mount
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function ImagesPage() {
         setImages([...images, newImage]);
         setUploaded(true);
         setElementName("");
+        setShowUpload(false);
         setTimeout(() => setUploaded(false), 3000);
       }
     } catch (error) {
@@ -86,12 +88,18 @@ export default function ImagesPage() {
   const pageImages = images.filter(img => img.page === selectedPage);
   const sectionImages = pageImages.filter(img => img.section === selectedSection);
 
+  // Stats
+  const stats = PAGES.map(page => ({
+    label: page.label,
+    count: images.filter(img => img.page === page.id).length
+  }));
+
   return (
-    <div className="p-8">
-      <div className="max-w-4xl">
-        <h1 className="text-4xl font-bold text-navy-900 mb-2">Images par page</h1>
-        <p className="text-navy-600 mb-8">
-          Gérez les images pour chaque page et section
+    <div className="p-8 bg-navy-950 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-amber-400 mb-2">Images des secteurs</h1>
+        <p className="text-amber-100 mb-8">
+          Gérez toutes les images de votre site par page et section
         </p>
 
         {uploaded && (
@@ -108,17 +116,27 @@ export default function ImagesPage() {
           </div>
         )}
 
-        {/* Page & Section Selection */}
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+          {stats.map(stat => (
+            <div key={stat.label} className="bg-gradient-to-br from-amber-900 to-amber-950 rounded-lg p-4 border border-amber-700">
+              <p className="text-amber-300 text-2xl font-bold">{stat.count}</p>
+              <p className="text-amber-200 text-xs mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Page & Section Selector */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div>
-            <label className="block text-sm font-medium text-navy-900 mb-2">Page</label>
+            <label className="block text-sm font-medium text-amber-400 mb-2">Page</label>
             <select
               value={selectedPage}
               onChange={(e) => {
                 setSelectedPage(e.target.value);
                 setSelectedSection(PAGES.find(p => p.id === e.target.value)?.sections[0] || "");
               }}
-              className="w-full px-4 py-2 border border-navy-200 rounded-lg text-navy-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 bg-navy-900 border border-amber-700 rounded-lg text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               {PAGES.map(page => (
                 <option key={page.id} value={page.id}>{page.label}</option>
@@ -127,11 +145,11 @@ export default function ImagesPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900 mb-2">Section</label>
+            <label className="block text-sm font-medium text-amber-400 mb-2">Section</label>
             <select
               value={selectedSection}
               onChange={(e) => setSelectedSection(e.target.value)}
-              className="w-full px-4 py-2 border border-navy-200 rounded-lg text-navy-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 bg-navy-900 border border-amber-700 rounded-lg text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               {currentPage?.sections.map(section => (
                 <option key={section} value={section}>{section}</option>
@@ -140,141 +158,146 @@ export default function ImagesPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900 mb-2">Élément/Composant</label>
+            <label className="block text-sm font-medium text-amber-400 mb-2">Élément</label>
             <input
               type="text"
-              placeholder="ex: Rapidité, Sécurité, Team..."
+              placeholder="ex: Rapidité, Sécurité..."
               value={elementName}
               onChange={(e) => setElementName(e.target.value)}
-              className="w-full px-4 py-2 border border-navy-200 rounded-lg text-navy-900 placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-4 py-2 bg-navy-900 border border-amber-700 rounded-lg text-amber-100 placeholder-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
           </div>
         </div>
 
-        {/* Upload Area */}
-        <div className="bg-white rounded-xl p-8 border border-navy-100 shadow-sm mb-8">
-          <h2 className="text-lg font-bold text-navy-900 mb-4">
-            Uploader une image{elementName && ` - ${elementName}`} pour {currentPage?.label} ({selectedSection})
-          </h2>
+        {/* Upload Section */}
+        {!showUpload ? (
+          <button
+            onClick={() => setShowUpload(true)}
+            className="w-full mb-8 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2"
+          >
+            <Plus className="h-5 w-5" />
+            Ajouter une nouvelle image
+          </button>
+        ) : (
+          <div className="bg-navy-900 rounded-lg p-8 border border-amber-700 mb-8">
+            <h2 className="text-lg font-bold text-amber-400 mb-4">
+              📸 Nouvelle image{elementName && ` - ${elementName}`}
+            </h2>
 
-          <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-navy-300 rounded-lg cursor-pointer bg-navy-50 hover:bg-navy-100 transition">
-            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-              <Upload className="h-10 w-10 text-navy-400 mb-2" />
-              <p className="text-base font-medium text-navy-600">Glissez ou cliquez</p>
-              <p className="text-sm text-navy-500">PNG, JPG, WebP (max 5MB)</p>
-            </div>
-            <input
-              type="file"
-              className="hidden"
-              accept=".png,.jpg,.jpeg,.webp"
-              onChange={handleUpload}
-            />
-          </label>
-        </div>
+            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-amber-700 rounded-lg cursor-pointer bg-navy-950 hover:bg-navy-900 transition">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <Upload className="h-10 w-10 text-amber-600 mb-2" />
+                <p className="text-base font-medium text-amber-300">Glissez ou cliquez</p>
+                <p className="text-sm text-amber-600">PNG, JPG, WebP (max 5MB)</p>
+              </div>
+              <input
+                type="file"
+                className="hidden"
+                accept=".png,.jpg,.jpeg,.webp"
+                onChange={handleUpload}
+              />
+            </label>
 
-        {/* Current Images for Section */}
-        <div className="bg-white rounded-xl p-6 border border-navy-100 shadow-sm">
-          <h2 className="text-lg font-bold text-navy-900 mb-6">
-            Images de cette section ({sectionImages.length})
-          </h2>
+            <button
+              onClick={() => setShowUpload(false)}
+              className="w-full mt-4 px-4 py-2 bg-navy-800 text-amber-300 rounded-lg hover:bg-navy-700 transition"
+            >
+              Annuler
+            </button>
+          </div>
+        )}
 
-          {sectionImages.length === 0 ? (
-            <p className="text-navy-500 text-center py-8">Aucune image uploadée pour cette section</p>
-          ) : (
-            <div className="space-y-4">
+        {/* Images Grid */}
+        {sectionImages.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-amber-400 mb-6">
+              Images de {currentPage?.label} - {selectedSection}
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {sectionImages.map((img) => (
                 <div
                   key={img.id}
-                  className="p-4 bg-navy-50 rounded-lg border border-navy-100"
+                  className="bg-navy-900 border border-amber-700 rounded-lg overflow-hidden hover:border-amber-500 transition"
                 >
                   {/* Image Preview */}
                   {img.url && (
-                    <div className="mb-4">
+                    <div className="relative h-48 overflow-hidden bg-navy-950">
                       <img
                         src={img.url}
                         alt={img.name}
-                        className="max-h-48 rounded-lg object-cover w-full"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   )}
 
                   {/* Image Details */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex-1">
-                      <p className="font-bold text-navy-900 text-lg">{img.element}</p>
-                      <p className="text-xs text-navy-600">{img.page} / {img.section}</p>
-                      <p className="text-xs text-navy-500 mt-1">{img.name} • {img.size}</p>
-                    </div>
-                    <button
-                      onClick={() => handleDelete(img.id)}
-                      className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                  <div className="p-4">
+                    <p className="font-bold text-amber-400 text-lg">{img.element}</p>
+                    <p className="text-xs text-amber-600 mt-1">{img.name}</p>
+                    <p className="text-xs text-amber-700">{img.size}</p>
                   </div>
 
-                  {/* Replace Image */}
-                  <label className="block w-full">
-                    <div className="px-4 py-2 bg-white border border-navy-200 rounded-lg text-center cursor-pointer hover:bg-navy-50 transition text-sm text-navy-600 font-medium">
-                      📝 Remplacer l&apos;image
-                    </div>
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept=".png,.jpg,.jpeg,.webp"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onload = (event) => {
-                            const updatedImages = images.map(i =>
-                              i.id === img.id
-                                ? { ...i, name: file.name, url: event.target?.result as string, size: `${(file.size / 1024).toFixed(0)} KB` }
-                                : i
-                            );
-                            setImages(updatedImages);
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                    />
-                  </label>
+                  {/* Buttons */}
+                  <div className="p-4 pt-0 space-y-2">
+                    <label className="block">
+                      <div className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-center cursor-pointer transition font-medium text-sm">
+                        📝 Remplacer
+                      </div>
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept=".png,.jpg,.jpeg,.webp"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                              const updatedImages = images.map(i =>
+                                i.id === img.id
+                                  ? { ...i, name: file.name, url: event.target?.result as string, size: `${(file.size / 1024).toFixed(0)} KB` }
+                                  : i
+                              );
+                              setImages(updatedImages);
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                      />
+                    </label>
+
+                    <button
+                      onClick={() => handleDelete(img.id)}
+                      className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition font-medium text-sm"
+                    >
+                      🗑️ Supprimer
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {sectionImages.length === 0 && !showUpload && (
+          <div className="text-center py-12 bg-navy-900 border border-amber-700 rounded-lg">
+            <p className="text-amber-600 text-lg">Aucune image pour cette section</p>
+            <p className="text-amber-700 text-sm mt-2">Cliquez sur "Ajouter une nouvelle image" pour commencer</p>
+          </div>
+        )}
 
         {/* Save Button */}
-        <div className="mt-8 flex justify-end">
-          <button
-            onClick={handleSave}
-            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
-          >
-            <Save className="h-5 w-5" />
-            Sauvegarder les images
-          </button>
-        </div>
-
-        {/* All Images Summary */}
-        <div className="bg-white rounded-xl p-6 border border-navy-100 shadow-sm mt-8">
-          <h2 className="text-lg font-bold text-navy-900 mb-6">
-            Résumé par page
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {PAGES.map(page => {
-              const count = images.filter(img => img.page === page.id).length;
-              return (
-                <div key={page.id} className="p-4 bg-navy-50 rounded-lg border border-navy-100">
-                  <p className="font-medium text-navy-900">{page.label}</p>
-                  <p className="text-2xl font-bold text-amber-500">{count}</p>
-                  <p className="text-xs text-navy-500">images</p>
-                </div>
-              );
-            })}
+        {images.length > 0 && (
+          <div className="fixed bottom-8 right-8">
+            <button
+              onClick={handleSave}
+              className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold py-4 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl"
+            >
+              <Save className="h-5 w-5" />
+              Sauvegarder les images
+            </button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
