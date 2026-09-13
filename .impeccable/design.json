@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-27T00:00:00.000Z",
+  "title": "Design System: Électricien Commercial SC",
+  "extensions": {
+    "colorMeta": {
+      "navy-primary": {
+        "role": "primary",
+        "displayName": "Navy Enclosure",
+        "canonical": "#0a1433",
+        "tonalRamp": ["#050b1a", "#0a1433", "#0f1f4d", "#142a66", "#1a3d8f", "#2159c4", "#3b7ce0", "#6ba3ec"]
+      },
+      "amber-signal": {
+        "role": "primary",
+        "displayName": "Amber Signal",
+        "canonical": "#e8790a",
+        "tonalRamp": ["#331a00", "#663300", "#944a00", "#c25f00", "#e8790a", "#f59320", "#f9ab52", "#fbc27e"]
+      },
+      "neutral-ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0a1020" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Jura, bold)", "purpose": "All headings." },
+      "body": { "displayName": "Body (Outfit)", "purpose": "Paragraphs, nav, buttons, form fields." }
+    },
+    "shadows": [
+      { "name": "overlay-only", "value": "reserved for floating overlays only (rendered as glassmorphism, not a shadow)", "purpose": "Resting content never carries a shadow; floating overlays use glass." }
+    ],
+    "motion": [
+      { "name": "letter-reveal", "value": "duration 0.4s per letter, 0.03s stagger", "purpose": "Letter-by-letter hero headline reveal." },
+      { "name": "header-solidify", "value": "tracked via useScroll/useMotionValueEvent at 40px", "purpose": "Transparent-to-glass header transition on the homepage." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-pill amber CTA.",
+      "html": "<button class=\"ds-btn-primary\">Soumission gratuite</button>",
+      "css": ".ds-btn-primary { background: #e8790a; color: #050b1a; border-radius: 9999px; padding: 16px 32px; font-weight: 600; border: none; } .ds-btn-primary:hover { background: #f59320; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Live Panel (third revision)",
+    "overview": "Third rebuild of the visual layer. Same content and logo-derived palette each time; composition rebuilt from scratch per user request. This revision: centered glow-blob hero, transparent-to-glass header, bento services grid, testimonial grid, light footer, rounded-3xl everywhere.",
+    "keyCharacteristics": [
+      "Vivid electric blue dominant field, saturated orange as the sole signal accent",
+      "Jura bold for headings, Outfit for body",
+      "Full-pill buttons, rounded-3xl everywhere else, no angular shapes",
+      "Glassmorphism confined to floating overlays"
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Orange never fills a background region larger than a button, badge, or the one bento tile.", "section": "colors" },
+      { "name": "The Single-Face Discipline Rule", "body": "Only Jura (headings) and Outfit (body/UI) exist on the site.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep amber/orange as the only accent color.",
+      "Do keep shapes to full-pill or rounded-3xl only."
+    ],
+    "donts": [
+      "Don't use an em dash or en dash anywhere in visible copy.",
+      "Don't drive scroll-based state with a raw window.addEventListener(\"scroll\")."
+    ]
+  }
+}

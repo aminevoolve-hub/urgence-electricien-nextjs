@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/app/globals.css"
+        ],
+        "createdAt": "2026-07-27T20:21:56.349Z",
+        "reason": "Glassmorphism utility classes explicitly requested by user"
+      }
+    ]
+  }
+}
