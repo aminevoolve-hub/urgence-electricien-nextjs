@@ -54,10 +54,6 @@ export default function BrandingPage() {
           setLogo(file.name);
           setSaved(true);
           alert(`✅ Logo uploadé avec succès!`);
-          setTimeout(() => {
-            console.log("→ Reloading page...");
-            window.location.reload();
-          }, 500);
         };
         reader.readAsDataURL(file);
       } else {
@@ -88,8 +84,6 @@ export default function BrandingPage() {
         setFavicon(file.name);
         setSaved(true);
         alert(`✅ Favicon uploadée avec succès!`);
-        // Reload config to see changes
-        window.location.reload();
         setTimeout(() => setSaved(false), 3000);
       }
     } catch (error) {
