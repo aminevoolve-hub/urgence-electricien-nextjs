@@ -9,7 +9,7 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
-  // Initialize logo from localStorage immediately to avoid flash
+  // Initialize logo from localStorage - no fallback default
   const [logoUrl, setLogoUrl] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -17,7 +17,7 @@ export default function Footer() {
         if (uploadedLogo) return uploadedLogo;
       } catch (err) {}
     }
-    return "/images/logo-electricien-montreal.png";
+    return ""; // No default logo - wait for upload
   });
 
   return (

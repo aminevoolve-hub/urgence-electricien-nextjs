@@ -18,7 +18,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
-  // Initialize logo from localStorage immediately to avoid flash
+  // Initialize logo from localStorage - no fallback default
   const [logoUrl, setLogoUrl] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -26,7 +26,7 @@ export default function Header() {
         if (uploadedLogo) return uploadedLogo;
       } catch (err) {}
     }
-    return "/images/logo-urgence-electricien.svg";
+    return ""; // No default logo - wait for upload
   });
 
   const pathname = usePathname();
