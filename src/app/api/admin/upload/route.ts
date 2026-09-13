@@ -1,5 +1,4 @@
-import { writeFileSync, mkdirSync } from "fs";
-import { join } from "path";
+import { put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -15,31 +14,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = join(process.cwd(), "public", "uploads", category || "");
-    mkdirSync(uploadsDir, { recursive: true });
-
-    // Read file as buffer
-    const buffer = Buffer.from(await file.arrayBuffer());
-
-    // Save file
+    // Upload to Vercel Blob Storage
     const filename = `${Date.now()}-${file.name}`;
-    const filepath = join(uploadsDir, filename);
-    writeFileSync(filepath, buffer);
+    const pathname = `${category}/${filename}`;
 
-    // Return public URL
-    const publicUrl = `/uploads/${category}/${filename}`;
+    const blob = await put(pathname, file, {
+      access: "public",
+    });
 
     return NextResponse.json({
       success: true,
-      filename,
-      url: publicUrl,
-      message: "Fichier uploadé avec succès",
+      filename: file.name,
+      url: blob.url,
+      message: "✅ Fichier uploadé avec succès!",
     });
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json(
-      { error: "Erreur lors de l'upload" },
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Erreur lors de l'upload"
+      },
       { status: 500 }
     );
   }

@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.0",
     "google-auth-library": "^10.9.1",
     "google-spreadsheet": "^5.3.0",
     "lucide-react": "^1.27.0",
