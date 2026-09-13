@@ -23,9 +23,27 @@ export default function CouleursPage() {
     });
   };
 
-  const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+  const handleSave = async () => {
+    try {
+      const res = await fetch("/api/admin/colors", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(colors),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSaved(true);
+        // Reload to apply new colors
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else {
+        alert("❌ Erreur: " + data.error);
+      }
+    } catch (error) {
+      alert("❌ Erreur: " + error);
+    }
   };
 
   return (

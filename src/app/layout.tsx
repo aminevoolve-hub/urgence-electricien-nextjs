@@ -10,6 +10,7 @@ import Footer from "@/components/footer";
 import MobileActionBar from "@/components/mobile-action-bar";
 import Chatbot from "@/components/chatbot";
 import BackToTop from "@/components/back-to-top";
+import ColorLoader from "@/components/color-loader";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -79,6 +80,7 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${russoOne.variable} font-sans antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        <ColorLoader />
         <QuoteModalProvider>
           <Header />
           <main className="pb-16 pt-20 lg:pb-0">{children}</main>
