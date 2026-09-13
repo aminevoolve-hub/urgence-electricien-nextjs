@@ -15,6 +15,7 @@ const PAGES = [
 export default function ImagesPage() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [selectedSection, setSelectedSection] = useState("hero");
+  const [elementName, setElementName] = useState("");
   const [uploaded, setUploaded] = useState(false);
   const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<any[]>([]);
@@ -54,11 +55,13 @@ export default function ImagesPage() {
           name: file.name,
           page: selectedPage,
           section: selectedSection,
+          element: elementName || file.name,
           size: `${(file.size / 1024).toFixed(0)} KB`,
           url: data.url
         };
         setImages([...images, newImage]);
         setUploaded(true);
+        setElementName("");
         setTimeout(() => setUploaded(false), 3000);
       }
     } catch (error) {
@@ -106,7 +109,7 @@ export default function ImagesPage() {
         )}
 
         {/* Page & Section Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div>
             <label className="block text-sm font-medium text-navy-900 mb-2">Page</label>
             <select
@@ -135,12 +138,23 @@ export default function ImagesPage() {
               ))}
             </select>
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-navy-900 mb-2">Élément/Composant</label>
+            <input
+              type="text"
+              placeholder="ex: Rapidité, Sécurité, Team..."
+              value={elementName}
+              onChange={(e) => setElementName(e.target.value)}
+              className="w-full px-4 py-2 border border-navy-200 rounded-lg text-navy-900 placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            />
+          </div>
         </div>
 
         {/* Upload Area */}
         <div className="bg-white rounded-xl p-8 border border-navy-100 shadow-sm mb-8">
           <h2 className="text-lg font-bold text-navy-900 mb-4">
-            Uploader une image pour {currentPage?.label} - {selectedSection}
+            Uploader une image{elementName && ` - ${elementName}`} pour {currentPage?.label} ({selectedSection})
           </h2>
 
           <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-navy-300 rounded-lg cursor-pointer bg-navy-50 hover:bg-navy-100 transition">
@@ -187,8 +201,9 @@ export default function ImagesPage() {
                   {/* Image Details */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
-                      <p className="font-medium text-navy-900">{img.name}</p>
-                      <p className="text-xs text-navy-500">{img.size}</p>
+                      <p className="font-bold text-navy-900 text-lg">{img.element}</p>
+                      <p className="text-xs text-navy-600">{img.page} / {img.section}</p>
+                      <p className="text-xs text-navy-500 mt-1">{img.name} • {img.size}</p>
                     </div>
                     <button
                       onClick={() => handleDelete(img.id)}
