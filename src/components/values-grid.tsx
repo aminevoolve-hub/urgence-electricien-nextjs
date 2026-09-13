@@ -1,18 +1,25 @@
+'use client';
+
 import { ArrowUpRight } from "lucide-react";
 import { values } from "@/lib/faq";
 import { getImage } from "@/lib/images";
+import { usePageImages, getImageByElement } from "@/lib/usePageImages";
 import SectionContainer from "./section-container";
 import Reveal from "./reveal";
 import AnimatedHeading from "./animated-heading";
 
 export default function ValuesGrid({ title = "Nos valeurs" }: { title?: string }) {
+  const adminImages = usePageImages("home", "valeurs");
+
   return (
     <section className="bg-gradient-navy-soft py-20">
       <SectionContainer>
         <AnimatedHeading as="h2" text={title} className="font-heading text-3xl text-navy-900" />
         <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
           {values.map((v, i) => {
-            const image = getImage("valeurs", v.slug);
+            // First check admin dashboard for image (by element name), then fallback to server files
+            const adminImage = getImageByElement(adminImages, v.title);
+            const image = adminImage || getImage("valeurs", v.slug);
             return (
               <Reveal
                 key={v.title}
