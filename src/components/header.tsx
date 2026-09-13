@@ -43,7 +43,7 @@ export default function Header() {
             <img
               src={logoUrl}
               alt={site.name}
-              className="h-24 w-auto"
+              className="h-24 w-auto lg:h-28"
             />
           </Link>
 
