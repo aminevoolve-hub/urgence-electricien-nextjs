@@ -18,9 +18,6 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
-  // Use the logo from public/images folder
-  const [logoUrl] = useState("/images/logo-urgence-electricien.png");
-
 
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -42,12 +39,7 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 lg:px-8">
           <Link href="/" className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logoUrl}
-              alt={site.name}
-              className="h-24 w-auto"
-            />
+            <span className="text-2xl font-bold text-amber-500">URGENCE</span>
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">

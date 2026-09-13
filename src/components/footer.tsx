@@ -9,9 +9,6 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
 export default function Footer() {
-  // Use the logo from public/images folder
-  const logoUrl = "/images/logo-urgence-electricien.png";
-
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">
       <div
@@ -21,12 +18,7 @@ export default function Footer() {
       />
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.85fr_0.85fr_0.85fr_0.9fr] lg:px-8">
         <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={logoUrl}
-            alt={site.name}
-            className="h-40 w-auto"
-          />
+          <h3 className="text-2xl font-bold text-amber-400">URGENCE</h3>
           <p className="mt-4 text-sm text-white">
             Urgence électricien 24/7. Dépannage d'urgence disponible 24 heures sur 24, 7 jours sur 7.
             Électricien licencié RBQ au service de la grande région métropolitaine de Montréal.
