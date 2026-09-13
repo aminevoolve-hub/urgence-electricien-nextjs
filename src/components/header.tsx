@@ -160,7 +160,7 @@ export default function Header() {
             >
               <Phone className="animate-phone-ring h-5 w-5" />
             </a>
-            <QuoteTriggerButton className="btn-gradient animate-pulse-ring rounded-full px-5 py-2 text-sm font-semibold text-navy-950">
+            <QuoteTriggerButton className="btn-gradient animate-pulse-ring rounded-full px-5 py-2 text-sm font-semibold text-white">
               Soumission gratuite
             </QuoteTriggerButton>
           </div>

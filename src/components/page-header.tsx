@@ -43,7 +43,7 @@ export default function PageHeader({
         <div className="flex flex-nowrap items-center justify-center gap-3 sm:gap-4">
           <QuoteTriggerButton
             service={quoteService}
-            className="btn-gradient rounded-full px-5 py-3 text-sm font-semibold text-navy-950 sm:px-7 sm:text-base"
+            className="btn-gradient rounded-full px-5 py-3 text-sm font-semibold text-white sm:px-7 sm:text-base"
           >
             {ctaLabel}
           </QuoteTriggerButton>

@@ -65,7 +65,7 @@ export default function Hero({ videoSrc }: { videoSrc?: VideoSources }) {
         </p>
 
         <div className="mt-10 flex flex-nowrap items-center justify-center gap-3 sm:gap-4">
-          <QuoteTriggerButton className="btn-gradient flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-navy-950 transition sm:px-8 sm:py-4 sm:text-base">
+          <QuoteTriggerButton className="btn-gradient flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition sm:px-8 sm:py-4 sm:text-base">
             Appeler d'urgence <ArrowRight className="h-4 w-4 shrink-0" />
           </QuoteTriggerButton>
           <a

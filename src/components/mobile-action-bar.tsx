@@ -10,7 +10,7 @@ export default function MobileActionBar() {
       <a href={`tel:${site.phone}`} className="flex flex-1 items-center justify-center gap-2 py-3 text-sm font-semibold text-navy-900">
         <Phone className="h-4 w-4" /> Appeler
       </a>
-      <QuoteTriggerButton className="btn-gradient flex flex-1 items-center justify-center gap-2 py-3 text-sm font-semibold text-navy-950">
+      <QuoteTriggerButton className="btn-gradient flex flex-1 items-center justify-center gap-2 py-3 text-sm font-semibold text-white">
         Soumission gratuite
       </QuoteTriggerButton>
     </div>
