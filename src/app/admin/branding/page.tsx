@@ -18,9 +18,10 @@ export default function BrandingPage() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("category", "branding");
+    formData.append("fileType", "logo");
 
     try {
-      console.log("Starting upload...");
+      console.log("Starting logo upload...");
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
       const data = await res.json();
       console.log("Upload response:", data);
@@ -28,7 +29,9 @@ export default function BrandingPage() {
       if (data.success) {
         setLogo(file.name);
         setSaved(true);
-        alert(`✅ Fichier uploadé: ${data.url}`);
+        alert(`✅ Logo uploadé avec succès!`);
+        // Reload config to see changes on main site
+        window.location.reload();
         setTimeout(() => setSaved(false), 3000);
       } else {
         alert(`❌ Erreur: ${data.error}`);
@@ -49,6 +52,7 @@ export default function BrandingPage() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("category", "branding");
+    formData.append("fileType", "favicon");
 
     try {
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
@@ -56,10 +60,14 @@ export default function BrandingPage() {
       if (data.success) {
         setFavicon(file.name);
         setSaved(true);
+        alert(`✅ Favicon uploadée avec succès!`);
+        // Reload config to see changes
+        window.location.reload();
         setTimeout(() => setSaved(false), 3000);
       }
     } catch (error) {
       console.error("Upload error:", error);
+      alert(`❌ Erreur: ${error}`);
     } finally {
       setFaviconUploading(false);
     }

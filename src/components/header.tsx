@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Phone, ChevronDown, Menu, MapPin } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
@@ -17,9 +17,20 @@ export default function Header() {
   const [zonesOpen, setZonesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [logoUrl, setLogoUrl] = useState("/images/logo-urgence-electricien.svg");
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    // Fetch the current config (logo/favicon)
+    fetch("/api/admin/config")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.logo) setLogoUrl(data.logo);
+      })
+      .catch((err) => console.log("Config fetch failed (using default)", err));
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => setScrolledPastHero(latest > 40));
 
@@ -39,7 +50,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logo-urgence-electricien.svg"
+              src={logoUrl}
               alt={site.name}
               className="h-16 w-auto"
             />

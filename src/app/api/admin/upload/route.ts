@@ -3,11 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 // Simple in-memory storage for uploaded files
 const uploadedFiles: Record<string, { name: string; type: string; size: number; uploaded: string }> = {};
 
+// Store current configuration in memory (shared with /api/admin/config)
+export let siteConfig = {
+  logo: "/images/logo-urgence-electricien.svg",
+  favicon: "/favicon.ico",
+  lastUpdated: new Date().toISOString(),
+};
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File;
     const category = formData.get("category") as string;
+    const fileType = formData.get("fileType") as string; // "logo" or "favicon"
 
     if (!file) {
       return NextResponse.json(
@@ -28,13 +36,27 @@ export async function POST(request: NextRequest) {
       uploaded: new Date().toISOString(),
     };
 
-    // Create download URL (for now, just return filename)
+    // Create a data URL for the uploaded file
+    const arrayBuffer = await file.arrayBuffer();
+    const base64 = Buffer.from(arrayBuffer).toString("base64");
+    const fileUrl = `data:${file.type};base64,${base64}`;
+
+    // Update site config if this is logo or favicon
+    if (fileType === "logo") {
+      siteConfig.logo = fileUrl;
+      siteConfig.lastUpdated = new Date().toISOString();
+    } else if (fileType === "favicon") {
+      siteConfig.favicon = fileUrl;
+      siteConfig.lastUpdated = new Date().toISOString();
+    }
+
     return NextResponse.json({
       success: true,
       filename: file.name,
       storageKey: storageKey,
       size: file.size,
       type: file.type,
+      fileUrl: fileUrl,
       message: `✅ ${file.name} uploadé avec succès!`,
     });
   } catch (error) {
