@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Upload, Trash2, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Upload, Trash2, Save } from "lucide-react";
 
 const PAGES = [
   { id: "home", label: "Accueil", sections: ["hero", "services", "testimonials"] },
@@ -16,7 +16,22 @@ export default function ImagesPage() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [selectedSection, setSelectedSection] = useState("hero");
   const [uploaded, setUploaded] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<any[]>([]);
+
+  // Load images from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("pageImages");
+        if (saved) {
+          setImages(JSON.parse(saved));
+        }
+      } catch (err) {
+        console.error("Error loading images:", err);
+      }
+    }
+  }, []);
 
   const currentPage = PAGES.find(p => p.id === selectedPage);
 
@@ -34,19 +49,35 @@ export default function ImagesPage() {
       const data = await res.json();
 
       if (data.success) {
-        setImages([...images, {
+        const newImage = {
+          id: Date.now().toString(),
           name: file.name,
           page: selectedPage,
           section: selectedSection,
           size: `${(file.size / 1024).toFixed(0)} KB`,
           url: data.url
-        }]);
+        };
+        setImages([...images, newImage]);
         setUploaded(true);
         setTimeout(() => setUploaded(false), 3000);
       }
     } catch (error) {
       alert(`Erreur: ${error}`);
     }
+  };
+
+  const handleSave = () => {
+    try {
+      localStorage.setItem("pageImages", JSON.stringify(images));
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (error) {
+      alert(`Erreur sauvegarde: ${error}`);
+    }
+  };
+
+  const handleDelete = (id: string) => {
+    setImages(images.filter(img => img.id !== id));
   };
 
   const pageImages = images.filter(img => img.page === selectedPage);
@@ -64,6 +95,13 @@ export default function ImagesPage() {
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center gap-3">
             <div className="h-2 w-2 bg-green-500 rounded-full"></div>
             <p className="text-green-800 font-medium">✓ Image uploadée avec succès</p>
+          </div>
+        )}
+
+        {saved && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center gap-3">
+            <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+            <p className="text-green-800 font-medium">✓ Images sauvegardées avec succès</p>
           </div>
         )}
 
@@ -139,13 +177,27 @@ export default function ImagesPage() {
                     <p className="font-medium text-navy-900">{img.name}</p>
                     <p className="text-xs text-navy-500">{img.size}</p>
                   </div>
-                  <button className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                  <button
+                    onClick={() => handleDelete(img.id)}
+                    className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  >
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
               ))}
             </div>
           )}
+        </div>
+
+        {/* Save Button */}
+        <div className="mt-8 flex justify-end">
+          <button
+            onClick={handleSave}
+            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+          >
+            <Save className="h-5 w-5" />
+            Sauvegarder les images
+          </button>
         </div>
 
         {/* All Images Summary */}
