@@ -20,15 +20,22 @@ export default function BrandingPage() {
     formData.append("category", "branding");
 
     try {
+      console.log("Starting upload...");
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
       const data = await res.json();
+      console.log("Upload response:", data);
+
       if (data.success) {
         setLogo(file.name);
         setSaved(true);
+        alert(`✅ Fichier uploadé: ${data.url}`);
         setTimeout(() => setSaved(false), 3000);
+      } else {
+        alert(`❌ Erreur: ${data.error}`);
       }
     } catch (error) {
       console.error("Upload error:", error);
+      alert(`❌ Erreur: ${error}`);
     } finally {
       setLogoUploading(false);
     }
