@@ -18,6 +18,12 @@ export default function AdminDashboard() {
       icon: "✏️",
     },
     {
+      title: "Articles de blogue",
+      description: "Ajouter, modifier ou retirer un article",
+      href: "/admin/blog",
+      icon: "📰",
+    },
+    {
       title: "Gérer les images",
       description: "Logo, services, galerie",
       href: "/admin/images",

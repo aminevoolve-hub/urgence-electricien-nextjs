@@ -1,7 +1,7 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextRequest, NextResponse } from "next/server";
 import { BLOB_PREFIX } from "@/lib/image-overrides";
-import { findSlot } from "@/lib/image-slots";
+import { resolveSlot } from "@/lib/image-slots";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 const MAX_SIZE = 15 * 1024 * 1024;
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       request,
       onBeforeGenerateToken: async (pathname) => {
         const [prefix, section, name] = pathname.split("/");
-        if (`${prefix}/` !== BLOB_PREFIX || !findSlot(section, name)) {
+        if (`${prefix}/` !== BLOB_PREFIX || !(await resolveSlot(section, name))) {
           throw new Error("Emplacement d'image inconnu");
         }
         return { allowedContentTypes: ALLOWED_TYPES, maximumSizeInBytes: MAX_SIZE, addRandomSuffix: false };

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { blogPosts, getPostBySlug } from "@/lib/blog";
+import { blogPosts } from "@/lib/blog";
+import { getPost, getPosts } from "@/lib/blog-store";
 import { getServiceBySlug } from "@/lib/services";
 import { getLocalPageBySlug } from "@/lib/local-pages";
 import { site } from "@/lib/site";
@@ -17,6 +18,9 @@ import FaqAccordion from "@/components/faq-accordion";
 
 const BLOG_FALLBACK_IMAGE = "blog-electricien-commercial-montreal";
 
+export const dynamicParams = true;
+export const revalidate = 0;
+
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
 }
@@ -27,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -42,14 +46,15 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
+  const allPosts = await getPosts();
 
   const relatedService = getServiceBySlug(post.relatedServiceSlug);
   const relatedLocalPages = (post.relatedLocalPageSlugs ?? [])
     .map((s) => getLocalPageBySlug(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
-  const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 6);
+  const otherPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 6);
   const fallbackImage = await getImage("blog", BLOG_FALLBACK_IMAGE);
   const otherPostsWithImages = await Promise.all(
     otherPosts.map(async (p) => ({
@@ -86,7 +91,7 @@ export default async function BlogPostPage({
         <div className="flex items-center gap-3">
           <span className="w-fit rounded-full bg-navy-100 px-3 py-1 text-xs font-semibold text-navy-700">{post.category}</span>
           <p className="text-sm text-navy-500">
-            {new Date(post.date).toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" })}
+            {new Date(`${post.date}T12:00:00`).toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" })}
           </p>
         </div>
 

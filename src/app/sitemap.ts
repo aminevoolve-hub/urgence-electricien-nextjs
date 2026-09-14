@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { blogPosts } from "@/lib/blog";
+import { getPosts } from "@/lib/blog-store";
 import { localPages } from "@/lib/local-pages";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const blogPosts = await getPosts();
   const staticRoutes = ["", "/a-propos", "/services", "/realisations", "/blog", "/contact"].map((path) => ({
     url: `${site.url}${path}`,
     lastModified: new Date(),

@@ -7,14 +7,14 @@ import {
   slotKey,
   slotPrefix,
 } from "@/lib/image-overrides";
-import { findSlot, imageSlotGroups } from "@/lib/image-slots";
+import { getImageSlotGroups, resolveSlot } from "@/lib/image-slots";
 import { getOriginalImage } from "@/lib/images";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   const overrides = await loadImageOverrides();
-  const groups = imageSlotGroups.map((group) => ({
+  const groups = (await getImageSlotGroups()).map((group) => ({
     id: group.id,
     label: group.label,
     slots: group.slots.map((slot) => {
@@ -29,7 +29,7 @@ export async function GET() {
 // Called once the browser has finished uploading: keep only the new blob and publish it.
 export async function POST(request: NextRequest) {
   const { section, name, url } = await request.json();
-  if (!findSlot(section, name) || typeof url !== "string") {
+  if (!(await resolveSlot(section, name)) || typeof url !== "string") {
     return NextResponse.json({ error: "Emplacement d'image inconnu" }, { status: 400 });
   }
   if (!new URL(url).pathname.startsWith(`/${slotPrefix(section, name)}`)) {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const { section, name } = await request.json();
-  if (!findSlot(section, name)) {
+  if (!(await resolveSlot(section, name))) {
     return NextResponse.json({ error: "Emplacement d'image inconnu" }, { status: 400 });
   }
 

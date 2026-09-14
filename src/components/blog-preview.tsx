@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { blogPosts } from "@/lib/blog";
+import { getPosts } from "@/lib/blog-store";
 import SectionContainer from "./section-container";
 import ImageSlot from "./image-slot";
 import AnimatedHeading from "./animated-heading";
 import Reveal from "./reveal";
 
-export default function BlogPreview() {
-  const latest = blogPosts.slice(0, 3);
+export default async function BlogPreview() {
+  const latest = (await getPosts()).slice(0, 3);
 
   return (
     <section className="py-20">

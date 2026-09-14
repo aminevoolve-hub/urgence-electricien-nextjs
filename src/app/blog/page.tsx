@@ -5,7 +5,8 @@ import CtaSection from "@/components/cta-section";
 import PageHeader from "@/components/page-header";
 import FeatureRow from "@/components/feature-row";
 import BlogList from "@/components/blog-list";
-import { blogPosts, blogCategories } from "@/lib/blog";
+import { blogCategories } from "@/lib/blog";
+import { getPosts } from "@/lib/blog-store";
 import { getImage } from "@/lib/images";
 
 const BLOG_FALLBACK_IMAGE = "blog-electricien-commercial-montreal";
@@ -35,7 +36,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function BlogIndexPage() {
+  const blogPosts = await getPosts();
   const fallbackImage = await getImage("blog", BLOG_FALLBACK_IMAGE);
   const posts = await Promise.all(
     blogPosts.map(async (p) => ({

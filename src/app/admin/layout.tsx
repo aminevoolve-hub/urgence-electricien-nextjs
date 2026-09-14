@@ -3,12 +3,13 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Palette, Type, Image, Video, Zap, Eye, LogOut } from "lucide-react";
+import { LayoutDashboard, Palette, Type, Image, Video, Zap, Eye, LogOut, Newspaper } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard },
   { href: "/admin/branding", label: "Marque", icon: Palette },
   { href: "/admin/contenu", label: "Contenu", icon: Type },
+  { href: "/admin/blog", label: "Blogue", icon: Newspaper },
   { href: "/admin/images", label: "Images", icon: Image },
   { href: "/admin/videos", label: "Vidéos", icon: Video },
   { href: "/admin/couleurs", label: "Couleurs", icon: Zap },

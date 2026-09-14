@@ -1,0 +1,96 @@
+import type { BlogPost } from "@/lib/blog-types";
+
+export const post: BlogPost = {
+  slug: "degat-eau-inondation-electricite-que-faire",
+  title: "Dégât d'eau ou inondation : l'électricité, quoi faire d'urgence",
+  category: "Sécurité électrique",
+  excerpt:
+    "Dégât d'eau ou inondation au sous-sol : l'électricité devient mortelle. Quand couper le courant, quoi ne pas toucher et pourquoi inspecter avant de rebrancher.",
+  date: "2026-07-09",
+  keywords: [
+    "dégât d'eau électricité",
+    "inondation sous-sol électricité",
+    "panneau électrique mouillé",
+    "couper le courant inondation",
+    "électricien après dégât d'eau Montréal",
+    "inspection électrique après inondation",
+    "prise DDFT sous-sol",
+    "rapport d'électricien assurance dégât d'eau",
+    "corrosion câblage eau",
+    "électricien d'urgence Longueuil Rive-Sud",
+  ],
+  relatedServiceSlug: "diagnostique-electrique",
+  content: [
+    "Une pluie diluvienne s'abat sur Montréal, le refoulement d'égout remonte par le drain de plancher et, en descendant l'escalier, vous voyez cinq centimètres d'eau qui recouvrent le sous-sol. La lumière est encore allumée. Le réfrigérateur d'appoint ronronne. Les barres d'alimentation de la salle de jeux baignent dans l'eau. Votre premier réflexe est d'aller sauver ce qui peut l'être. C'est précisément le réflexe qui envoie des gens à l'hôpital chaque printemps.",
+    "L'eau et l'électricité forment le duo le plus dangereux qu'on puisse rencontrer dans une maison. Une prise submergée, une rallonge dans une flaque ou un panneau éclaboussé peuvent électrifier toute la surface de l'eau, sans étincelle, sans bruit, sans avertissement. Ce guide explique, dans l'ordre, ce qu'il faut faire et ne pas faire lors d'un dégât d'eau ou d'une inondation, pourquoi le danger persiste bien après que l'eau se soit retirée, et comment éviter que la prochaine crue ne tourne au drame.",
+    "## Règle numéro un : ne jamais entrer dans l'eau si le courant est actif",
+    "Tant que vous n'avez pas la certitude que l'électricité est coupée, l'eau au sol doit être considérée comme sous tension. Il suffit d'une prise basse, d'un appareil branché ou d'un fil dénudé en contact avec l'eau pour que tout le plan d'eau devienne conducteur. Vous ne verrez rien, et le premier signe sera la décharge. Le risque est le même avec de l'eau claire, de l'eau d'égout ou de la fonte des neiges.",
+    "- Ne descendez pas dans un sous-sol inondé, même avec des bottes de caoutchouc. Les bottes ne sont pas un équipement de protection électrique.",
+    "- Ne touchez à aucun appareil branché, aucune prise, aucun interrupteur situé dans la zone mouillée ou à proximité.",
+    "- Tenez les enfants et les animaux loin de l'escalier et de la zone touchée.",
+    "- Si quelqu'un est déjà dans l'eau et reçoit une décharge, ne le rejoignez pas : coupez le courant si c'est possible ou appelez le 911.",
+    "## Couper le courant, mais seulement si c'est sécuritaire",
+    "La bonne nouvelle, c'est qu'un disjoncteur principal coupé rend l'eau inoffensive sur le plan électrique. La mauvaise, c'est que le panneau est souvent au sous-sol, exactement là où se trouve l'eau. Voici comment décider.",
+    "### Le panneau est au sec et accessible sans traverser l'eau",
+    "Si vous pouvez atteindre le panneau les pieds au sec, en marchant sur un plancher sec, et que le boîtier lui-même n'est ni mouillé ni éclaboussé, coupez le disjoncteur principal avec les mains sèches, idéalement d'une seule main, en gardant l'autre derrière le dos. N'ouvrez jamais le couvercle intérieur : actionnez uniquement la manette. Ensuite, ne réenclenchez rien avant qu'un électricien ait inspecté l'installation.",
+    "### Le panneau est mouillé, dans l'eau ou de l'autre côté de la flaque",
+    "N'y allez pas. Un panneau mouillé peut être sous tension jusqu'au boîtier, et traverser l'eau pour l'atteindre est exactement ce qu'il ne faut pas faire. Deux options s'offrent à vous : appeler Hydro-Québec pour demander une coupure au compteur, ou appeler un électricien d'urgence équipé pour couper l'alimentation de façon sécuritaire. Notre équipe de [dépannage électrique d'urgence](/services/depannage-urgence) intervient en moins d'une heure, 24/7, à Montréal, Laval, Longueuil, Brossard, Terrebonne et sur les deux rives. Si de la fumée, des flammes ou des étincelles apparaissent, sortez et composez le 911.",
+    "## Les appareils et les prises qui ont touché l'eau",
+    "Une fois le courant coupé et l'eau évacuée, la tentation est grande de tout essuyer et de rebrancher. Résistez. Ce qui a été submergé n'est plus fiable, même une fois sec en apparence.",
+    "- **Les prises et interrupteurs** qui ont été sous l'eau doivent être remplacés. L'eau s'infiltre dans le boîtier, derrière la plaque, dans les bornes, et y laisse des minéraux et des résidus conducteurs.",
+    "- **Les barres d'alimentation, rallonges et chargeurs** mouillés vont à la poubelle. Ils ne valent pas le risque.",
+    "- **Les gros appareils** (laveuse, sécheuse, réfrigérateur, chauffe-eau électrique, fournaise) dont le bas a trempé doivent être vérifiés par un technicien avant remise en marche. Un moteur ou une carte électronique mouillé peut fonctionner quelques jours puis prendre feu.",
+    "- **Les plinthes électriques** installées au ras du sol sont presque toujours touchées lors d'une inondation de sous-sol et doivent être inspectées ou remplacées.",
+    "Notre service d'[installation de prises et d'interrupteurs](/services/installation-prise-interrupteur) remplace les points touchés par du matériel neuf, adapté à un local humide.",
+    "## Panneau mouillé : c'est un remplacement, pas un séchage",
+    "C'est le point que beaucoup de propriétaires ont du mal à accepter. Un panneau électrique qui a été submergé, même partiellement, même quelques heures, doit être remplacé. Les disjoncteurs contiennent des mécanismes fins qui rouillent et se bloquent ; un disjoncteur grippé ne déclenchera plus en cas de surcharge, et c'est justement son seul rôle. Les cosses principales, le neutre et les barres omnibus se corrodent de l'intérieur. Sécher un panneau au ventilateur ne change rien à ce qui se passe dans le métal.",
+    "Le même raisonnement s'applique au câblage. Les fils dont l'isolant a trempé dans l'eau d'égout ou l'eau salée de la rue conservent des dépôts corrosifs qui grugent le cuivre pendant des mois. Notre service de [remplacement de panneau électrique](/services/panneau-electrique) évalue l'étendue exacte des dommages et vous propose la solution qui rend l'installation à nouveau sécuritaire et conforme.",
+    "## La corrosion cachée : le danger qui arrive des semaines plus tard",
+    "Le piège d'un dégât d'eau, c'est que tout semble fonctionner une fois l'eau partie. Puis, trois semaines ou trois mois plus tard, une prise chauffe, un disjoncteur saute sans raison, une odeur de brûlé apparaît dans un mur. La corrosion a fait son travail : une connexion s'est desserrée, une résistance de contact s'est créée, et la chaleur s'est installée là où personne ne regarde. Notre article sur [l'odeur de brûlé électrique](/blog/odeur-brule-electrique-prise-panneau-reagir-vite) décrit ces signes tardifs et la façon d'y réagir.",
+    "C'est pour cette raison qu'une inspection complète avant la remise sous tension n'est pas une formalité. Un [diagnostic électrique](/services/diagnostique-electrique) après inondation comprend la vérification de l'isolation des circuits touchés, l'inspection des boîtes de jonction et des prises basses, le contrôle du panneau, des mises à la terre et des liaisons, et une thermographie une fois le courant rétabli pour repérer tout point qui chauffe. Rien n'est remis sous tension sans cette vérification, et le prix vous est annoncé avant de commencer.",
+    "## Assurances : le rapport d'électricien fait la différence",
+    "La plupart des polices d'assurance habitation couvrent les dommages électriques causés par un dégât d'eau, mais l'assureur voudra une preuve que les réparations étaient nécessaires et qu'elles ont été faites dans les règles. Un rapport d'électricien licencié (CMEQ / RBQ) décrivant les composants touchés, leur état et les travaux effectués simplifie énormément la réclamation. Quelques conseils pratiques :",
+    "- Photographiez la hauteur de l'eau sur les murs, les prises et le panneau avant de nettoyer.",
+    "- Conservez les appareils et les composants remplacés jusqu'à ce que l'expert en sinistre les ait vus, si votre assureur le demande.",
+    "- Demandez à l'électricien un rapport écrit avec la liste des éléments remplacés et la raison de chaque remplacement.",
+    "- Notez la date, l'heure et la cause probable de l'inondation (refoulement, infiltration, bris de tuyau).",
+    "## Prévenir la prochaine fois",
+    "Un sous-sol montréalais a de bonnes chances de connaître un jour l'eau, que ce soit par refoulement, infiltration ou bris de chauffe-eau. Quelques mesures réduisent nettement le risque électrique lors du prochain épisode.",
+    "- **Des prises DDFT au sous-sol.** Une prise à disjoncteur de fuite à la terre coupe le courant en une fraction de seconde dès qu'elle détecte une fuite vers l'eau ou vers une personne. Le Code exige déjà des DDFT dans les emplacements humides, et les installer sur tout le sous-sol est une protection peu coûteuse.",
+    "- **Un panneau installé plus haut.** Si votre panneau est au ras du sol dans une zone sujette aux refoulements, le déplacer ou le rehausser lors d'une mise à niveau peut lui éviter une submersion.",
+    "- **Une pompe de puisard sur un circuit dédié**, avec un système d'alimentation de secours, pour qu'elle continue de fonctionner quand le reste du sous-sol est coupé.",
+    "- **Des prises et des plinthes surélevées** dans les zones à risque, et aucun appareil ni barre d'alimentation posé directement au sol.",
+    "- **Un clapet antiretour** sur le drain principal, qui relève de la plomberie mais qui évite la cause la plus fréquente d'inondation en ville.",
+    "Ces travaux relèvent de nos [services d'électricité résidentielle](/services/travaux-electricite) et s'intègrent facilement à une rénovation de sous-sol après sinistre.",
+    "## Conclusion : l'eau se retire, le danger reste",
+    "Face à un dégât d'eau ou une inondation, la séquence est simple mais elle ne tolère aucun raccourci : ne pas entrer dans l'eau tant que le courant est actif, couper le disjoncteur principal uniquement s'il est au sec et accessible, sinon appeler Hydro-Québec ou un électricien d'urgence, ne rien rebrancher avant une inspection complète, remplacer le panneau et les prises submergés, et documenter pour l'assureur. N'ouvrez jamais le panneau vous-même, et composez le 911 en présence de flammes ou de fumée.",
+    "Vous avez de l'eau au sous-sol et l'électricité est encore active ? Appelez-nous immédiatement au (438) 338-4113 : un électricien licencié arrive en moins d'une heure pour sécuriser l'installation. Une fois l'eau évacuée, vous pouvez aussi [demander une inspection après sinistre](/contact) et nous vous remettrons un rapport complet pour votre assureur.",
+  ],
+  faq: [
+    {
+      question: "Puis-je entrer dans mon sous-sol inondé pour couper le panneau ?",
+      answer:
+        "Non si vous devez traverser l'eau pour l'atteindre, ou si le panneau est mouillé. L'eau peut être sous tension par une prise ou un appareil submergé, et des bottes de caoutchouc ne protègent pas. Coupez le disjoncteur principal uniquement si vous restez sur un plancher sec et que le boîtier est sec. Sinon, appelez Hydro-Québec ou un électricien d'urgence pour couper l'alimentation en sécurité.",
+    },
+    {
+      question: "Mon panneau électrique a été mouillé : peut-on juste le faire sécher ?",
+      answer:
+        "Non. Un panneau submergé, même partiellement, doit être remplacé. Les mécanismes des disjoncteurs rouillent et se bloquent, ce qui les empêche de déclencher en cas de surcharge, et les cosses principales se corrodent de l'intérieur. Un séchage en surface ne règle rien. Un électricien licencié évalue les dommages, remplace ce qui doit l'être et fournit un rapport pour votre assureur.",
+    },
+    {
+      question: "Quand puis-je remettre le courant après un dégât d'eau ?",
+      answer:
+        "Seulement après une inspection complète par un électricien licencié. Il vérifie l'isolation des circuits touchés, les prises, les boîtes de jonction, le panneau et les mises à la terre, puis remet sous tension circuit par circuit en surveillant tout point qui chauffe. Rebrancher soi-même après un simple séchage expose à des courts-circuits et à des incendies qui surviennent parfois des semaines plus tard.",
+    },
+    {
+      question: "Les assurances couvrent-elles les réparations électriques après inondation ?",
+      answer:
+        "Dans la plupart des polices habitation, oui, selon la cause du sinistre et vos protections. L'assureur demandera un rapport d'électricien licencié détaillant les composants touchés et les travaux faits. Photographiez la hauteur de l'eau sur les prises et le panneau avant de nettoyer, conservez les pièces remplacées si on vous le demande, et exigez un rapport écrit après l'intervention.",
+    },
+    {
+      question: "Un électricien peut-il venir la nuit ou la fin de semaine pour une inondation ?",
+      answer:
+        "Oui. Notre équipe intervient 24/7, 365 jours par année, avec une réponse en moins d'une heure à Montréal, Laval, Longueuil, Brossard, Terrebonne et sur les deux rives. Le diagnostic sur place est gratuit, le prix est annoncé avant les travaux et il n'y a aucune surcharge de nuit, de fin de semaine ou de jour férié. En cas de flammes ou de fumée, composez d'abord le 911.",
+    },
+  ],
+};

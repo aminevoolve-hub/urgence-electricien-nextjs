@@ -1,4 +1,5 @@
 import { blogPosts } from "./blog";
+import { getPosts } from "./blog-store";
 import { values } from "./faq";
 import { projects } from "./projects";
 import { services } from "./services";
@@ -80,4 +81,26 @@ export function findSlot(section: string, name: string) {
     if (slot) return slot;
   }
   return null;
+}
+
+/** Slot groups with the blog group reflecting posts created from the dashboard. */
+export async function getImageSlotGroups(): Promise<ImageSlotGroup[]> {
+  const posts = await getPosts();
+  return imageSlotGroups.map((group) =>
+    group.id !== "blog"
+      ? group
+      : {
+          ...group,
+          slots: [group.slots[0], ...posts.map((p) => ({ section: "blog", name: p.slug, label: p.title }))],
+        }
+  );
+}
+
+/** Like findSlot, but also accepts blog posts created from the dashboard. */
+export async function resolveSlot(section: string, name: string): Promise<ImageSlotDef | null> {
+  const bundled = findSlot(section, name);
+  if (bundled) return bundled;
+  if (section !== "blog") return null;
+  const post = (await getPosts()).find((p) => p.slug === name);
+  return post ? { section: "blog", name: post.slug, label: post.title } : null;
 }

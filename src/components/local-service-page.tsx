@@ -1,6 +1,6 @@
 import { MapPin, Phone, Newspaper } from "lucide-react";
 import type { LocalPage } from "@/lib/local-pages";
-import { getPostBySlug } from "@/lib/blog";
+import { getPost } from "@/lib/blog-store";
 import { localPages } from "@/lib/local-pages";
 import { site } from "@/lib/site";
 import SectionContainer from "./section-container";
@@ -11,11 +11,11 @@ import AnimatedHeading from "./animated-heading";
 import Reveal from "./reveal";
 import LinkCardsCarousel from "./link-cards-carousel";
 
-export default function LocalServicePage({ page }: { page: LocalPage }) {
+export default async function LocalServicePage({ page }: { page: LocalPage }) {
   const otherPages = localPages.filter((p) => p.slug !== page.slug);
-  const relatedPosts = page.relatedBlogSlugs
-    .map((slug) => getPostBySlug(slug))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+  const relatedPosts = (await Promise.all(page.relatedBlogSlugs.map((slug) => getPost(slug)))).filter(
+    (p): p is NonNullable<typeof p> => Boolean(p)
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -82,7 +82,7 @@ export default function BlogList({
                     <p className="mt-4 font-heading text-base text-navy-900">{post.title}</p>
                     <p className="mt-2 flex-1 text-sm text-navy-600">{post.excerpt}</p>
                     <span className="mt-4 text-xs text-navy-400">
-                      {new Date(post.date).toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" })}
+                      {new Date(`${post.date}T12:00:00`).toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" })}
                     </span>
                   </div>
                 </Link>
