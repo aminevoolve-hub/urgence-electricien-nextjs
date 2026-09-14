@@ -7,9 +7,9 @@ import { projects } from "@/lib/projects";
 import { getImage } from "@/lib/images";
 
 export const metadata: Metadata = {
-  title: "Réalisations | Projets électriques commerciaux à Montréal",
+  title: "Réalisations | Interventions électriques à Montréal",
   description:
-    "Découvrez nos réalisations en installation électrique commerciale, éclairage DEL, entretien et bornes de recharge VE dans la région de Montréal.",
+    "Découvrez nos interventions d'urgence et travaux électriques réalisés à Montréal, Laval, Longueuil et sur les Rives : dépannage, panneaux, disjoncteurs, installations.",
   alternates: { canonical: "/realisations" },
 };
 
@@ -23,7 +23,7 @@ export default async function RealisationsPage() {
     <>
       <PageHeader
         title="Nos réalisations"
-        description="480+ projets commerciaux et industriels réalisés dans le Grand Montréal."
+        description="Nos interventions d'urgence et travaux électriques dans le Grand Montréal."
         breadcrumbs={[{ label: "Réalisations" }]}
       />
       <SectionContainer className="py-14">

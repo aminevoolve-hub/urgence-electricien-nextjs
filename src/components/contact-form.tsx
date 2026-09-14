@@ -123,7 +123,7 @@ export default function ContactForm({
       </div>
       <div className="sm:col-span-2">
         <label htmlFor="message" className="mb-1 block text-sm font-medium text-navy-800">
-          Détails de votre projet
+          Décrivez votre problème ou votre projet
         </label>
         <textarea
           id="message"

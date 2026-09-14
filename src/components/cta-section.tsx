@@ -6,8 +6,8 @@ import QuoteTriggerButton from "./quote-trigger-button";
 import AnimatedHeading from "./animated-heading";
 
 export default function CtaSection({
-  title = "Prêt à démarrer votre projet électrique commercial ?",
-  description = "Obtenez une soumission gratuite et sans engagement sous 24 à 48 heures.",
+  title = "Une panne électrique ? On arrive en moins d'une heure.",
+  description = "Disponible 24/7 dans le Grand Montréal. Diagnostic gratuit, prix annoncé avant la réparation, aucune surcharge d'urgence.",
 }: {
   title?: string;
   description?: string;
@@ -50,19 +50,21 @@ export default function CtaSection({
             {description}
           </p>
           <div className="relative flex flex-wrap justify-center gap-4">
-            <QuoteTriggerButton className="btn-gradient-dark rounded-full px-7 py-3.5 font-semibold text-white">
-              Soumission gratuite
-            </QuoteTriggerButton>
             <a
               href={`tel:${site.phone}`}
-              className={`flex items-center gap-2 rounded-full border px-7 py-3.5 font-semibold ${
+              className="btn-gradient-dark flex items-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white"
+            >
+              <Phone className="h-4 w-4" /> Appeler {site.phoneDisplay}
+            </a>
+            <QuoteTriggerButton
+              className={`rounded-full border px-7 py-3.5 font-semibold ${
                 hasVideo
                   ? "border-white/40 hover:bg-white/10"
                   : "border-navy-950/30 hover:bg-navy-950/10"
               }`}
             >
-              <Phone className="h-4 w-4" /> {site.phoneDisplay}
-            </a>
+              Soumission gratuite
+            </QuoteTriggerButton>
           </div>
         </div>
       </SectionContainer>

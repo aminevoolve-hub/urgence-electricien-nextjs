@@ -29,11 +29,11 @@ const russoOne = Russo_One({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Électricien commercial et industriel à Montréal`,
+    default: `${site.name} | Électricien d'urgence 24/7 à Montréal`,
     template: `%s | ${site.name}`,
   },
   description:
-    "Électricien commercial et industriel licencié RBQ à Montréal. Installations, éclairage DEL, entretien, thermographie, bornes de recharge VE. Soumission gratuite.",
+    "Électricien d'urgence licencié à Montréal, disponible 24/7. Panne électrique, disjoncteur qui saute, panneau, prises : réponse en moins d'une heure, diagnostic gratuit, prix transparent.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

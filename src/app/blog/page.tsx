@@ -24,14 +24,14 @@ const highlights = [
   {
     icon: ShieldCheck,
     title: "Basé sur l'expérience terrain",
-    description: "Chaque article s'appuie sur des projets réels réalisés dans le Grand Montréal.",
+    description: "Chaque article s'appuie sur des interventions réelles réalisées dans le Grand Montréal.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Blog | Conseils en électricité commerciale à Montréal",
+  title: "Blog | Conseils d'électricien d'urgence à Montréal",
   description:
-    "Articles et conseils d'experts sur l'installation électrique commerciale, l'éclairage DEL, l'entretien préventif et les bornes de recharge VE à Montréal.",
+    "Conseils d'électricien d'urgence : pannes électriques, disjoncteurs, panneau, sécurité et mises aux normes à Montréal, Laval, Longueuil et sur les Rives.",
   alternates: { canonical: "/blog" },
 };
 
@@ -52,13 +52,13 @@ export default async function BlogIndexPage() {
     <>
       <PageHeader
         title="Blog"
-        description="Conseils pratiques sur l'électricité commerciale et industrielle pour les entreprises du Grand Montréal, écrits par notre équipe d'électriciens licenciés RBQ."
+        description="Conseils pratiques d'un électricien d'urgence pour les propriétaires et commerces du Grand Montréal : pannes, sécurité, panneau électrique et mises aux normes."
         breadcrumbs={[{ label: "Blog" }]}
       />
       <SectionContainer className="pb-20 pt-14">
         <p className="mx-auto max-w-2xl text-center text-navy-600">
           Des réponses concrètes aux questions les plus fréquentes de nos clients : coûts, délais, mises à niveau et
-          obligations légales. Filtrez par catégorie pour trouver l&apos;article qui correspond à votre projet.
+          obligations légales. Filtrez par catégorie pour trouver l&apos;article qui correspond à votre situation.
         </p>
         <div className="mt-10">
           <FeatureRow items={highlights} />

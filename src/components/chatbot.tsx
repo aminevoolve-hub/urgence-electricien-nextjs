@@ -13,7 +13,7 @@ const questions: { question: string; answer: string }[] = [
   {
     question: "Quels services offrez-vous ?",
     answer:
-      "Nous offrons l'installation électrique commerciale, l'éclairage DEL, l'entretien/diagnostic électrique et les bornes de recharge VE / câblage réseau.",
+      "Dépannage électrique d'urgence 24/7, remplacement de disjoncteur, mise à jour de panneau électrique, installation de prises et d'interrupteurs, diagnostic électrique complet et travaux électriques généraux.",
   },
   {
     question: "Êtes-vous licenciés RBQ ?",
@@ -24,19 +24,19 @@ const questions: { question: string; answer: string }[] = [
     answer: `Nous desservons ${site.serviceArea}.`,
   },
   {
-    question: "Offrez-vous un service d'urgence ?",
-    answer: "Oui, notre équipe est disponible 24 heures sur 24, 7 jours sur 7.",
+    question: "En combien de temps arrivez-vous ?",
+    answer: "En moins d'une heure dans le Grand Montréal, 24 heures sur 24, 7 jours sur 7, sans surcharge pour l'urgence.",
   },
   {
-    question: "Comment obtenir une soumission ?",
-    answer: "Cliquez sur « Demander une soumission » ci-dessous, c'est gratuit et sans engagement.",
+    question: "Combien ça coûte ?",
+    answer: "Le diagnostic sur place est gratuit et le prix est annoncé avant toute réparation. Pour un projet planifié, demandez une soumission gratuite ci-dessous.",
   },
 ];
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { from: "bot", text: "Bonjour ! Comment puis-je vous aider avec votre projet électrique commercial ?" },
+    { from: "bot", text: "Bonjour ! Une panne électrique ou une question ? Je suis là pour vous aider, 24/7." },
   ]);
   const [typing, setTyping] = useState(false);
   const { openQuoteModal } = useQuoteModal();
@@ -70,7 +70,7 @@ export default function Chatbot() {
                 <span className="icon-badge flex h-8 w-8 items-center justify-center rounded-full text-navy-950">
                   <Zap className="h-4 w-4" />
                 </span>
-                <span className="font-heading text-sm text-white">Assistant Électricien Commercial SC</span>
+                <span className="font-heading text-sm text-white">Assistant Urgence Électricien</span>
               </div>
               <button onClick={() => setOpen(false)} aria-label="Fermer" className="text-white">
                 <X className="h-5 w-5" />
