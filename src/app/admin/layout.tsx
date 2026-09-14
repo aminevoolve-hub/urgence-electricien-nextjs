@@ -2,8 +2,8 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { LayoutDashboard, Palette, Type, Image, Video, Zap, Eye } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { LayoutDashboard, Palette, Type, Image, Video, Zap, Eye, LogOut } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard },
@@ -16,6 +16,15 @@ const navItems = [
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  if (pathname === "/admin/login") return <>{children}</>;
+
+  async function logout() {
+    await fetch("/api/admin/login", { method: "DELETE" });
+    router.replace("/admin/login");
+    router.refresh();
+  }
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/admin" && pathname.startsWith(href));
@@ -59,6 +68,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             <Eye className="h-5 w-5" />
             <span className="text-sm">Voir le site</span>
           </Link>
+          <button
+            onClick={logout}
+            className="flex w-full items-center gap-3 px-4 py-3 rounded-lg text-navy-200 hover:bg-navy-800 transition-colors"
+          >
+            <LogOut className="h-5 w-5" />
+            <span className="text-sm">Déconnexion</span>
+          </button>
         </div>
       </div>
 
