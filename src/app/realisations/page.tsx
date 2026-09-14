@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/realisations" },
 };
 
-export default function RealisationsPage() {
+export default async function RealisationsPage() {
   const images: Record<string, string | undefined> = {};
   for (const project of projects) {
-    images[project.image] = getImage("projects", project.image) ?? undefined;
+    images[project.image] = (await getImage("projects", project.image)) ?? undefined;
   }
 
   return (

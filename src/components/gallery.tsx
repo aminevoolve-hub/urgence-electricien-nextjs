@@ -5,15 +5,13 @@ import { X, ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { getServiceBySlug } from "@/lib/services";
 import Reveal from "./reveal";
-import { usePageImages } from "@/lib/usePageImages";
 
 const PLACEHOLDER_HEIGHTS = ["h-56", "h-72", "h-64", "h-80", "h-60", "h-72"];
 
-function ProjectVisual({ project, image, adminImage, tall }: { project: Project; image?: string; adminImage?: string; tall?: string }) {
-  const displayImage = adminImage || image;
-  if (displayImage) {
+function ProjectVisual({ project, image, tall }: { project: Project; image?: string; tall?: string }) {
+  if (image) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={displayImage} alt={project.title} className="h-full w-full object-cover" />;
+    return <img src={image} alt={project.title} className="h-full w-full object-cover" />;
   }
   const service = getServiceBySlug(project.serviceSlug);
   const Icon = service?.icon ?? ImageOff;
@@ -32,7 +30,6 @@ export default function Gallery({
   images: Record<string, string | undefined>;
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const adminImages = usePageImages("realisations", "portfolio");
 
   function close() {
     setActiveIndex(null);
@@ -56,7 +53,6 @@ export default function Gallery({
                 <ProjectVisual
                   project={project}
                   image={images[project.image]}
-                  adminImage={adminImages[project.title]}
                   tall={PLACEHOLDER_HEIGHTS[i % PLACEHOLDER_HEIGHTS.length]}
                 />
                 <div className="absolute inset-0 flex items-end bg-navy-950/0 p-4 transition-colors group-hover:bg-navy-950/30">
@@ -98,7 +94,7 @@ export default function Gallery({
 
           <div className="max-w-3xl" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl">
-              <ProjectVisual project={active} image={images[active.image]} adminImage={adminImages[active.title]} tall="h-full" />
+              <ProjectVisual project={active} image={images[active.image]} tall="h-full" />
             </div>
           </div>
         </div>

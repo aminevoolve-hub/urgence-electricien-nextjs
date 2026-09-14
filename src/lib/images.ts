@@ -1,13 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
+import { getImageOverrides, slotKey } from "./image-overrides";
 
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif"];
+
+function baseName(name: string) {
+  return name.replace(/\.[^/.]+$/, "");
+}
 
 function findImageFile(section: string, name: string): string | null {
   const dir = path.join(process.cwd(), "public", "images", section);
   if (!fs.existsSync(dir)) return null;
 
-  const base = name.replace(/\.[^/.]+$/, "");
+  const base = baseName(name);
   const files = fs.readdirSync(dir);
 
   for (const ext of IMAGE_EXTENSIONS) {
@@ -19,13 +24,17 @@ function findImageFile(section: string, name: string): string | null {
 }
 
 /**
- * Resolves an image by exact base name inside public/images/{section}, or null when no
- * real file has been uploaded yet. Callers render an authored illustration/icon instead of
- * a stock-photo placeholder so the site never shows an unrelated stock photo as if it were
- * real project or company photography.
+ * The image bundled in public/images/{section}, or null when none has been added.
+ * Callers render an authored illustration/icon instead of a stock-photo placeholder.
  */
-export function getImage(section: string, name: string): string | null {
+export function getOriginalImage(section: string, name: string): string | null {
   return findImageFile(section, name);
+}
+
+/** An image uploaded from the admin dashboard takes priority over the bundled file. */
+export async function getImage(section: string, name: string): Promise<string | null> {
+  const overrides = await getImageOverrides();
+  return overrides[slotKey(section, baseName(name))] ?? findImageFile(section, name);
 }
 
 export function listImages(section: string): string[] {
@@ -45,7 +54,7 @@ export type VideoSources = { webm: string | null; mp4: string | null };
  */
 export function getVideo(name: string): VideoSources {
   const dir = path.join(process.cwd(), "public", "videos");
-  const base = name.replace(/\.[^/.]+$/, "");
+  const base = baseName(name);
   if (!fs.existsSync(dir)) return { webm: null, mp4: null };
 
   const files = fs.readdirSync(dir);

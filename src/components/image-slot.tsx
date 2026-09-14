@@ -1,7 +1,7 @@
 import { ImageIcon } from "lucide-react";
 import { getImage } from "@/lib/images";
 
-export default function ImageSlot({
+export default async function ImageSlot({
   section,
   name,
   fallback,
@@ -14,7 +14,7 @@ export default function ImageSlot({
   alt: string;
   className?: string;
 }) {
-  const src = getImage(section, name) ?? (fallback ? getImage(section, fallback) : null);
+  const src = (await getImage(section, name)) ?? (fallback ? await getImage(section, fallback) : null);
 
   if (src) {
     return (

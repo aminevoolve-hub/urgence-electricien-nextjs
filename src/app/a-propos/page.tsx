@@ -48,9 +48,9 @@ const sections = [
   { id: "approche", label: "Notre approche" },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const valuesImages: Record<string, string | undefined> = {};
-  for (const v of values) valuesImages[v.slug] = getImage("valeurs", v.slug) ?? undefined;
+  for (const v of values) valuesImages[v.slug] = (await getImage("valeurs", v.slug)) ?? undefined;
 
   return (
     <>

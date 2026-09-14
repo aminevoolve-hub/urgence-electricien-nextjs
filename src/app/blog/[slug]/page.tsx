@@ -48,13 +48,16 @@ export default async function BlogPostPage({
     .map((s) => getLocalPageBySlug(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
   const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 6);
-  const otherPostsWithImages = otherPosts.map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt,
-    category: p.category,
-    image: getImage("blog", p.slug) ?? getImage("blog", BLOG_FALLBACK_IMAGE) ?? undefined,
-  }));
+  const fallbackImage = await getImage("blog", BLOG_FALLBACK_IMAGE);
+  const otherPostsWithImages = await Promise.all(
+    otherPosts.map(async (p) => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      category: p.category,
+      image: (await getImage("blog", p.slug)) ?? fallbackImage ?? undefined,
+    }))
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",

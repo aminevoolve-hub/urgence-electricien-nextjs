@@ -12,12 +12,11 @@ import { navLinks } from "@/lib/nav";
 import QuoteTriggerButton from "./quote-trigger-button";
 import MobileNav from "./mobile-nav";
 
-export default function Header() {
+export default function Header({ logoUrl }: { logoUrl: string }) {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [zonesOpen, setZonesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
-  const [logoUrl] = useState("/images/logo-urgence-electricien.png");
 
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -162,7 +161,7 @@ export default function Header() {
         </div>
       </motion.header>
 
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} logoUrl={logoUrl} />
     </>
   );
 }

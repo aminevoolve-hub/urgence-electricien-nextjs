@@ -8,9 +8,7 @@ import { services } from "@/lib/services";
 import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 
-export default function Footer() {
-  const logoUrl = "/images/logo-urgence-electricien.png";
-
+export default function Footer({ logoUrl }: { logoUrl: string }) {
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white">
       <div

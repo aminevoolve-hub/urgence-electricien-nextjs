@@ -35,15 +35,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export default function BlogIndexPage() {
-  const posts = blogPosts.map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt,
-    category: p.category,
-    date: p.date,
-    image: getImage("blog", p.slug) ?? getImage("blog", BLOG_FALLBACK_IMAGE),
-  }));
+export default async function BlogIndexPage() {
+  const fallbackImage = await getImage("blog", BLOG_FALLBACK_IMAGE);
+  const posts = await Promise.all(
+    blogPosts.map(async (p) => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      category: p.category,
+      date: p.date,
+      image: (await getImage("blog", p.slug)) ?? fallbackImage,
+    }))
+  );
 
   return (
     <>

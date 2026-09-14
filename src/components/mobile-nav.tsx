@@ -10,7 +10,15 @@ import { localPages } from "@/lib/local-pages";
 import { navLinks } from "@/lib/nav";
 import QuoteTriggerButton from "./quote-trigger-button";
 
-export default function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function MobileNav({
+  open,
+  onClose,
+  logoUrl,
+}: {
+  open: boolean;
+  onClose: () => void;
+  logoUrl: string;
+}) {
   const [view, setView] = useState<"main" | "services" | "zones">("main");
 
   useEffect(() => {
@@ -41,7 +49,7 @@ export default function MobileNav({ open, onClose }: { open: boolean; onClose: (
               </button>
             ) : (
               /* eslint-disable-next-line @next/next/no-img-element */
-              <img src="/images/logo-electricien-montreal.png" alt={site.name} className="h-16 w-auto" />
+              <img src={logoUrl} alt={site.name} className="h-16 w-auto" />
             )}
             <button onClick={onClose} aria-label="Fermer le menu" className="p-2">
               <X className="h-6 w-6" />

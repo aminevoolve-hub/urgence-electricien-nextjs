@@ -3,6 +3,7 @@ import { Outfit, Russo_One } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { getImage } from "@/lib/images";
 import { QuoteModalProvider } from "@/context/quote-modal-context";
 import QuoteModal from "@/components/quote-modal";
 import Header from "@/components/header";
@@ -72,9 +73,11 @@ const websiteJsonLd = {
   url: site.url,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const logoUrl = (await getImage("brand", "logo")) ?? "/images/brand/logo.png";
+
   return (
     <html lang="fr-CA">
       <head>
@@ -104,9 +107,9 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
         <ColorLoader />
         <QuoteModalProvider>
-          <Header />
+          <Header logoUrl={logoUrl} />
           <main className="pb-16 pt-20 lg:pb-0">{children}</main>
-          <Footer />
+          <Footer logoUrl={logoUrl} />
           <MobileActionBar />
           <Chatbot />
           <BackToTop />

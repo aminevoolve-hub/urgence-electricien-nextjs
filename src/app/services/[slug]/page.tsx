@@ -45,7 +45,7 @@ export default async function ServicePage({
   const otherServices = services.filter((s) => s.slug !== service.slug);
   const otherServiceImages: Record<string, string | undefined> = {};
   for (const s of otherServices) {
-    otherServiceImages[s.slug] = getImage("services", s.slug) ?? undefined;
+    otherServiceImages[s.slug] = (await getImage("services", s.slug)) ?? undefined;
   }
 
   const jsonLd = {

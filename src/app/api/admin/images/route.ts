@@ -1,67 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  deleteSlotBlobs,
+  isBlobConfigured,
+  loadImageOverrides,
+  revalidateImages,
+  slotKey,
+  slotPrefix,
+} from "@/lib/image-overrides";
+import { findSlot, imageSlotGroups } from "@/lib/image-slots";
+import { getOriginalImage } from "@/lib/images";
 
-// Store image metadata
-export let imageConfig = {
-  images: [] as any[],
-  lastUpdated: new Date().toISOString(),
-};
-
-export async function POST(request: NextRequest) {
-  try {
-    const formData = await request.formData();
-    const file = formData.get("file") as File;
-    const page = formData.get("page") as string;
-    const section = formData.get("section") as string;
-
-    if (!file) {
-      return NextResponse.json(
-        { error: "Aucun fichier sélectionné" },
-        { status: 400 }
-      );
-    }
-
-    // Generate unique filename
-    const timestamp = Date.now();
-    const filename = `${timestamp}-${file.name}`;
-    const fileUrl = `/images/uploads/${page}/${filename}`;
-
-    // Store image metadata
-    imageConfig.images.push({
-      filename,
-      page,
-      section,
-      originalName: file.name,
-      type: file.type,
-      size: file.size,
-      url: fileUrl,
-      uploaded: new Date().toISOString(),
-    });
-
-    imageConfig.lastUpdated = new Date().toISOString();
-
-    return NextResponse.json({
-      success: true,
-      filename,
-      page,
-      section,
-      url: fileUrl,
-      message: `✅ ${file.name} uploadé pour ${page}/${section}`,
-    });
-  } catch (error) {
-    console.error("Upload error:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Erreur lors de l'upload",
-      },
-      { status: 500 }
-    );
-  }
-}
+export const dynamic = "force-dynamic";
 
 export async function GET() {
-  return NextResponse.json({
-    images: imageConfig.images,
-    message: "Images par page",
-  });
+  const overrides = await loadImageOverrides();
+  const groups = imageSlotGroups.map((group) => ({
+    id: group.id,
+    label: group.label,
+    slots: group.slots.map((slot) => {
+      const original = getOriginalImage(slot.section, slot.name);
+      const override = overrides[slotKey(slot.section, slot.name)] ?? null;
+      return { ...slot, original, override, current: override ?? original };
+    }),
+  }));
+  return NextResponse.json({ configured: isBlobConfigured(), groups });
+}
+
+// Called once the browser has finished uploading: keep only the new blob and publish it.
+export async function POST(request: NextRequest) {
+  const { section, name, url } = await request.json();
+  if (!findSlot(section, name) || typeof url !== "string") {
+    return NextResponse.json({ error: "Emplacement d'image inconnu" }, { status: 400 });
+  }
+  if (!new URL(url).pathname.startsWith(`/${slotPrefix(section, name)}`)) {
+    return NextResponse.json({ error: "URL d'image invalide" }, { status: 400 });
+  }
+
+  await deleteSlotBlobs(section, name, url);
+  revalidateImages();
+  return NextResponse.json({ success: true, url });
+}
+
+export async function DELETE(request: NextRequest) {
+  const { section, name } = await request.json();
+  if (!findSlot(section, name)) {
+    return NextResponse.json({ error: "Emplacement d'image inconnu" }, { status: 400 });
+  }
+
+  await deleteSlotBlobs(section, name);
+  revalidateImages();
+  return NextResponse.json({ success: true, original: getOriginalImage(section, name) });
 }

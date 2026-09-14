@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const heroVideo = getVideo("electricien-commercial-montreal");
   const valuesImages: Record<string, string | undefined> = {};
-  for (const v of values) valuesImages[v.slug] = getImage("valeurs", v.slug) ?? undefined;
+  for (const v of values) valuesImages[v.slug] = (await getImage("valeurs", v.slug)) ?? undefined;
 
   return (
     <>
