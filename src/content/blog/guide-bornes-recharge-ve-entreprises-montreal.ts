@@ -1,0 +1,107 @@
+import type { BlogPost } from "@/lib/blog-types";
+
+export const post: BlogPost = {
+  slug: "guide-bornes-recharge-ve-entreprises-montreal",
+  title: "Borne de recharge VE pour entreprise à Montréal : le guide",
+  category: "Réseaux & bornes de recharge",
+  excerpt:
+    "Borne de recharge VE pour entreprise à Montréal : capacité du panneau, niveau 2 ou rapide, emplacement, subventions et étapes d'installation à prévoir.",
+  date: "2026-02-28",
+  updated: "2026-09-14",
+  keywords: [
+    "borne de recharge VE entreprise Montréal",
+    "installation borne de recharge commerciale",
+    "borne de recharge stationnement employés",
+    "borne recharge véhicule électrique commerce",
+    "électricien borne de recharge Laval",
+    "installation borne VE entreprise Longueuil",
+    "bornes de recharge copropriété commerciale",
+    "subvention borne de recharge entreprise Québec",
+  ],
+  relatedServiceSlug: "travaux-electricite",
+  content: [
+    "Installer une borne de recharge VE pour votre entreprise à Montréal n'est plus un geste symbolique : de plus en plus d'employés, de clients et de partenaires arrivent en véhicule électrique et s'attendent à pouvoir se brancher. Pour un gestionnaire, la question n'est donc plus « faut-il le faire ? » mais « comment le faire correctement, sans surprise sur la facture ni reprise des travaux dans deux ans ? ». Ce guide parcourt les décisions à prendre, dans l'ordre où elles se présentent réellement.",
+    "## Pourquoi les entreprises montréalaises installent des bornes de recharge",
+    "Les motivations varient d'une organisation à l'autre. Certaines veulent retenir et attirer des employés qui roulent électrique. D'autres veulent offrir un service à leur clientèle : un restaurant, un hôtel, un centre commercial ou une clinique où l'on reste stationné assez longtemps pour recharger. D'autres encore électrifient leur propre flotte de véhicules et ont besoin de recharger la nuit, dans leur cour.",
+    "Dans tous ces cas, la borne devient rapidement un équipement attendu, au même titre que le Wi-Fi ou un stationnement déneigé. Un projet bien pensé sert plusieurs de ces objectifs à la fois ; un projet improvisé finit souvent par des bornes mal placées, saturées ou impossibles à étendre.",
+    "## Première étape : évaluer la capacité électrique disponible",
+    "Avant de choisir un modèle ou un emplacement, la première étape consiste à évaluer la capacité électrique disponible au panneau principal. Chaque borne ajoute une charge importante et continue, très différente d'un éclairage ou d'un ordinateur. Si le panneau est déjà bien sollicité par la climatisation, la réfrigération ou de la machinerie, il n'aura peut-être pas la marge nécessaire.",
+    "Cette évaluation demande un relevé des charges existantes, un examen de l'état du panneau et du raccordement, et une discussion sur vos projets à venir. Trois scénarios en découlent généralement : la capacité est suffisante et l'installation peut se faire directement ; la capacité est insuffisante et une [mise à niveau du panneau électrique](/services/panneau-electrique) s'impose ; ou la capacité est limitée mais un système de gestion de la charge permet de répartir intelligemment la puissance entre plusieurs bornes sans augmenter le service.",
+    "La gestion de charge mérite une mention particulière, parce qu'elle change souvent l'équation. Au lieu de donner à chaque borne sa pleine puissance en permanence, le système répartit la capacité disponible entre les véhicules branchés, en fonction de ce que le panneau peut fournir à ce moment précis. Dans un stationnement d'employés où les véhicules restent plusieurs heures, personne ne remarque la différence, mais l'entreprise évite parfois une augmentation de service coûteuse. C'est une option à évaluer dès la première visite, surtout dans un immeuble partagé ou une copropriété commerciale où la capacité est comptée.",
+    "Si votre panneau donne déjà des signes de fatigue, notre article sur les [signes qu'un panneau commercial doit être mis à niveau](/blog/signes-mise-a-niveau-panneau-electrique-commercial) vous aidera à reconnaître la situation avant de lancer le projet de bornes.",
+    "## Niveau 2 ou borne rapide : choisir selon le temps de stationnement",
+    "Le choix entre une borne de recharge de niveau 2 et une borne rapide dépend surtout du temps que les véhicules passent stationnés chez vous, et non de ce qui paraît le plus impressionnant.",
+    "### Le niveau 2 : le choix naturel pour les employés et la flotte",
+    "Pour un stationnement d'employés où les véhicules restent tout le quart de travail, une borne de niveau 2 est généralement suffisante et plus économique à installer. Même logique pour une flotte qui rentre au bercail le soir et repart le matin : le véhicule a toute la nuit pour se recharger, et la borne rapide n'apporterait rien de plus qu'un coût d'installation nettement supérieur.",
+    "### La borne rapide : pour les arrêts courts et le passage",
+    "La borne rapide prend tout son sens lorsque le véhicule ne reste que le temps d'un repas, d'une course ou d'un rendez-vous, et que l'utilisateur veut repartir avec une autonomie sensiblement supérieure. Elle exige toutefois une alimentation beaucoup plus importante, une coordination plus poussée avec Hydro-Québec et un budget d'installation d'un autre ordre. Pour la majorité des commerces, quelques bornes de niveau 2 bien placées rendent plus service qu'une seule borne rapide.",
+    "### Combien de bornes prévoir ?",
+    "Le choix du nombre de bornes et de leur puissance dépend de l'achalandage prévu et du type de clientèle. Plutôt que de deviner, observez votre stationnement : combien de véhicules électriques s'y trouvent déjà, combien de temps restent-ils, et à quel rythme ce nombre progresse-t-il ? Une planification adéquate permet aussi de prévoir l'ajout futur de bornes supplémentaires sans reprise majeure des travaux : conduits surdimensionnés, capacité réservée au panneau et emplacements prévus dès le départ.",
+    "## Choisir l'emplacement des bornes dans votre stationnement",
+    "L'emplacement physique des bornes mérite une réflexion sérieuse, parce qu'il influence à la fois le coût d'installation et la qualité de l'expérience pour les utilisateurs. Voici les critères à peser :",
+    "- **Proximité du panneau électrique** : plus la distance est courte, moins il y a de tranchées, de conduits et de conducteurs à installer.",
+    "- **Accessibilité pour les véhicules** : espace de manœuvre, longueur du câble, position du port de recharge qui varie d'un modèle de véhicule à l'autre.",
+    "- **Protection contre les intempéries et le déneigement** : bornes protégées des chasse-neige, socles ou bollards au besoin, dégagement pour l'entreposage de la neige en hiver.",
+    "- **Signalisation claire** : espaces réservés identifiés, consignes d'utilisation et marquage au sol pour éviter les conflits de stationnement.",
+    "- **Éclairage et visibilité** : les utilisateurs doivent pouvoir se brancher en sécurité le soir, et les bornes visibles depuis la rue ont aussi un effet d'affichage.",
+    "- **Possibilité d'extension** : laisser de la place à côté des premières bornes pour les suivantes, avec les conduits déjà en attente.",
+    "Une installation de borne de recharge VE pour entreprise bien pensée prévoit également l'ajout de capacité réservée au panneau pour l'avenir, de façon à ne pas rouvrir le stationnement à chaque nouvelle borne.",
+    "## Conformité, permis et coordination avec Hydro-Québec",
+    "Une installation de bornes de recharge en entreprise doit respecter les exigences du Code de construction du Québec en matière de protection électrique : circuits dédiés, dispositifs de protection adaptés, mise à la terre et boîtiers conçus pour l'extérieur lorsque les bornes sont exposées aux intempéries. Selon la municipalité, un permis est requis avant les travaux.",
+    "Lorsque la charge ajoutée dépasse la capacité du raccordement existant, une coordination avec Hydro-Québec devient nécessaire pour augmenter le service. Cette démarche prend du temps et doit être amorcée tôt dans le projet ; c'est l'une des raisons pour lesquelles l'évaluation de capacité vient en tout premier. Un électricien licencié RBQ s'occupe de ces étapes et s'assure que l'installation est conforme dès le premier jour.",
+    "### Subventions et aide financière pour les bornes en entreprise",
+    "Des programmes de subvention existent pour les entreprises qui installent des bornes de recharge. Leurs conditions, leurs montants et leurs critères d'admissibilité évoluent régulièrement, et certains exigent que l'installation soit réalisée par un entrepreneur licencié ou que les bornes répondent à des caractéristiques précises. Il est donc prudent de vérifier les programmes en vigueur avant d'acheter le matériel, et non après.",
+    "Notre équipe peut vous accompagner dans l'évaluation technique et les démarches administratives, de façon à ce que votre projet réponde aux exigences des programmes auxquels vous êtes admissible.",
+    "## Les étapes d'installation d'une borne de recharge VE pour entreprise",
+    "- **Visite d'évaluation gratuite** : relevé de la capacité du panneau, examen du stationnement, discussion de vos besoins actuels et futurs.",
+    "- **Recommandation** : nombre de bornes, niveau de puissance, emplacement, gestion de charge au besoin, et mise à niveau du panneau si nécessaire.",
+    "- **Soumission détaillée** : prix annoncé avant les travaux, incluant matériel, main-d'œuvre, permis et échéancier.",
+    "- **Permis et coordination** : démarches municipales et, si la charge l'exige, coordination avec Hydro-Québec.",
+    "- **Travaux** : passage des conduits, tranchées si nécessaire, installation des circuits dédiés, pose et raccordement des bornes.",
+    "- **Mise en service** : tests de chaque borne, configuration des accès ou de la facturation le cas échéant, et explication du fonctionnement à votre équipe.",
+    "Ces étapes font partie de nos [travaux électriques commerciaux](/services/travaux-electricite). Le même soin s'applique aux propriétaires résidentiels : notre [guide des bornes de recharge à la maison pour Laval et Terrebonne](/blog/bornes-recharge-ve-residentiel-laval-terrebonne) couvre le volet résidentiel.",
+    "### Les erreurs fréquentes lors d'un projet de bornes de recharge",
+    "- Acheter les bornes avant d'avoir fait vérifier la capacité du panneau, puis découvrir qu'une mise à niveau coûteuse s'impose.",
+    "- Installer une seule borne au plus près du panneau sans penser aux suivantes, et devoir tout rouvrir lors de l'ajout.",
+    "- Choisir une borne rapide pour un stationnement d'employés, où le niveau 2 aurait suffi à une fraction du coût.",
+    "- Placer les bornes là où le déneigement les endommagera dès le premier hiver.",
+    "- Négliger la gestion de charge, alors qu'elle permet souvent d'installer plusieurs bornes sans augmenter le service.",
+    "- Confier l'installation à un entrepreneur sans licence RBQ, ce qui compromet la conformité, les subventions et l'assurance.",
+    "## Pourquoi choisir Urgence Électricien MTL pour vos bornes de recharge",
+    "Nos électriciens licenciés (CMEQ / RBQ) installent des bornes de recharge pour les entreprises de Montréal, Laval, Longueuil, Brossard, Terrebonne et des deux rives. L'évaluation sur place est gratuite, le prix est annoncé avant les travaux, et nous pouvons intervenir hors des heures d'ouverture sans surcharge de nuit ou de fin de semaine, pour ne pas perturber votre stationnement. Apprenez-en plus sur notre équipe et notre façon de travailler sur la page [à propos](/a-propos).",
+    "## Conclusion : une borne de recharge VE pour entreprise à Montréal, planifiée pour durer",
+    "Une borne de recharge VE pour entreprise à Montréal est un investissement qui se juge sur des années : la capacité réservée aujourd'hui, l'emplacement choisi et la qualité de l'installation déterminent si le projet grandit avec vous ou s'il devra être refait. Commencez par l'évaluation de votre panneau, choisissez le niveau de puissance selon le temps de stationnement réel, et prévoyez l'extension dès le départ. Appelez-nous au (438) 338-4113 ou [demandez une soumission gratuite](/contact) pour planifier vos bornes.",
+  ],
+  faq: [
+    {
+      question: "Quelle est la première étape pour installer des bornes de recharge dans une entreprise ?",
+      answer:
+        "Évaluer la capacité électrique disponible au panneau principal. Chaque borne ajoute une charge continue importante, et le panneau doit pouvoir la supporter en plus de vos équipements actuels. Cette évaluation détermine s'il faut une mise à niveau, une gestion de charge ou si l'installation peut se faire directement.",
+    },
+    {
+      question: "Borne de niveau 2 ou borne rapide pour mon commerce ?",
+      answer:
+        "Cela dépend du temps de stationnement. Pour des employés qui restent tout le quart de travail ou une flotte qui recharge la nuit, le niveau 2 est généralement suffisant et plus économique. La borne rapide convient aux arrêts courts, mais exige une alimentation bien plus importante et une coordination plus poussée avec Hydro-Québec.",
+    },
+    {
+      question: "Faut-il un permis pour installer des bornes de recharge en entreprise ?",
+      answer:
+        "Selon la municipalité, un permis est requis avant les travaux, et l'installation doit respecter les exigences du Code de construction du Québec en matière de protection électrique. Si la charge ajoutée dépasse la capacité du raccordement existant, une coordination avec Hydro-Québec est aussi nécessaire. Un électricien licencié RBQ gère ces étapes.",
+    },
+    {
+      question: "Existe-t-il des subventions pour les bornes de recharge en entreprise ?",
+      answer:
+        "Oui, des programmes de subvention existent pour les entreprises qui installent des bornes de recharge. Leurs conditions changent régulièrement et certains exigent une installation par un entrepreneur licencié. Il vaut mieux vérifier les programmes en vigueur avant d'acheter le matériel ; notre équipe peut vous accompagner dans ces démarches.",
+    },
+    {
+      question: "Comment prévoir l'ajout de bornes supplémentaires plus tard ?",
+      answer:
+        "En réservant de la capacité au panneau, en surdimensionnant les conduits et en laissant des emplacements libres à côté des premières bornes dès l'installation initiale. Ces choix coûtent peu au départ et évitent de rouvrir le stationnement ou de remplacer le panneau à chaque nouvelle borne.",
+    },
+    {
+      question: "L'évaluation pour un projet de bornes est-elle gratuite ?",
+      answer:
+        "Oui. Nous nous déplaçons gratuitement pour évaluer votre panneau, votre stationnement et vos besoins, puis nous remettons une soumission détaillée avec un prix annoncé avant les travaux. Nous desservons Montréal, Laval, Longueuil, Brossard, Terrebonne et les deux rives.",
+    },
+  ],
+};

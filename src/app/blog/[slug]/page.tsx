@@ -12,6 +12,8 @@ import ImageSlot from "@/components/image-slot";
 import PageHeader from "@/components/page-header";
 import AnimatedHeading from "@/components/animated-heading";
 import RelatedBlogCarousel from "@/components/related-blog-carousel";
+import BlogContent from "@/components/blog-content";
+import FaqAccordion from "@/components/faq-accordion";
 
 const BLOG_FALLBACK_IMAGE = "blog-electricien-commercial-montreal";
 
@@ -65,6 +67,8 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    keywords: post.keywords.join(", "),
     author: { "@type": "Organization", name: site.name },
     publisher: { "@type": "Organization", name: site.name },
   };
@@ -94,11 +98,7 @@ export default async function BlogPostPage({
           className="mt-6 aspect-video w-full"
         />
 
-        <div className="mt-8 space-y-5 text-navy-700">
-          {post.content.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
+        <BlogContent blocks={post.content} />
 
         {relatedService && (
           <div className="mt-10 rounded-3xl border border-amber-200 bg-amber-50 p-6">
@@ -125,6 +125,8 @@ export default async function BlogPostPage({
           </div>
         )}
       </SectionContainer>
+
+      {post.faq && post.faq.length > 0 && <FaqAccordion items={post.faq} title="Questions fréquentes" />}
 
       <section className="bg-gradient-navy-soft py-16">
         <SectionContainer>

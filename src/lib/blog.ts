@@ -1,14 +1,24 @@
-export type BlogPost = {
-  slug: string;
-  title: string;
-  category: string;
-  excerpt: string;
-  date: string;
-  keywords: string[];
-  relatedServiceSlug: string;
-  relatedLocalPageSlugs?: string[];
-  content: string[];
-};
+import type { BlogPost } from "./blog-types";
+import { post as coutInstallationCommerciale } from "@/content/blog/cout-installation-electrique-commerciale-montreal";
+import { post as signesMiseANiveauPanneau } from "@/content/blog/signes-mise-a-niveau-panneau-electrique-commercial";
+import { post as economiesEclairageDel } from "@/content/blog/economies-eclairage-del-commercial";
+import { post as thermographieInfrarouge } from "@/content/blog/thermographie-infrarouge-detecter-problemes-avant-panne";
+import { post as guideBornesEntreprises } from "@/content/blog/guide-bornes-recharge-ve-entreprises-montreal";
+import { post as cablageReseauStructure } from "@/content/blog/cablage-reseau-structure-ce-quun-commerce-doit-savoir";
+import { post as frequenceEntretienPreventif } from "@/content/blog/frequence-entretien-electrique-preventif";
+import { post as certificationEclairageUrgence } from "@/content/blog/certification-eclairage-urgence-obligations-legales-quebec";
+import { post as commercialVsResidentiel } from "@/content/blog/electricien-commercial-vs-residentiel-differences";
+import { post as renovationCommerciale } from "@/content/blog/renovation-commerciale-par-ou-commencer-electricite";
+import { post as panneMaisonSignes } from "@/content/blog/panne-electrique-maison-7-signes-appeler-urgence";
+import { post as panneHiverQuebec } from "@/content/blog/panne-electricite-hiver-quebec-que-faire";
+import { post as odeurBruleEtincelles } from "@/content/blog/odeur-brule-etincelles-panneau-rouille-dangers-electriques";
+import { post as premiereVisiteResidentiel } from "@/content/blog/premiere-visite-electricien-residentiel-a-quoi-sattendre";
+import { post as miseAuxNormesMaisonAncienne } from "@/content/blog/mise-aux-normes-maison-ancienne-panneau-electrique";
+import { post as coutResidentielLavalTerrebonne } from "@/content/blog/cout-electricien-residentiel-laval-sherbrooke-terrebonne";
+import { post as electricienCertifieRbq } from "@/content/blog/electricien-certifie-rbq-pourquoi-ca-change-tout";
+import { post as bornesResidentielLavalTerrebonne } from "@/content/blog/bornes-recharge-ve-residentiel-laval-terrebonne";
+
+export type { BlogPost, BlogFaq } from "./blog-types";
 
 export const blogCategories = [
   "Installation commerciale",
@@ -21,381 +31,24 @@ export const blogCategories = [
 ] as const;
 
 export const blogPosts: BlogPost[] = [
-  {
-    slug: "cout-installation-electrique-commerciale-montreal",
-    title: "Combien coûte une installation électrique commerciale à Montréal ?",
-    category: "Installation commerciale",
-    excerpt: "Les facteurs qui influencent le prix d'une installation électrique commerciale à Montréal et comment obtenir une soumission juste.",
-    date: "2026-01-12",
-    keywords: [
-      "coût installation électrique commerciale Montréal",
-      "prix électricien commercial",
-      "soumission électricien commercial gratuite",
-      "devis électricien commercial Montréal",
-    ],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    content: [
-      "Le coût d'une installation électrique commerciale à Montréal varie considérablement selon la superficie du local, la charge électrique requise et l'état du bâtiment existant. En général, les commerces de détail et bureaux se situent dans une fourchette différente des restaurants ou espaces industriels, qui exigent une puissance électrique plus élevée.",
-      "Parmi les facteurs qui font varier le prix : le type de bâtiment (construction neuve ou rénovation), la capacité du panneau électrique nécessaire, la distance entre le panneau et le point de raccordement Hydro-Québec, et les exigences spécifiques de votre secteur d'activité.",
-      "Pour obtenir un prix précis, une soumission gratuite et détaillée reste la meilleure option. Notre équipe évalue vos plans, la charge électrique nécessaire et vous propose un devis clair, sans surprise, incluant matériaux, main-d'œuvre et échéancier.",
-      "Un autre facteur souvent sous-estimé est l'âge du bâtiment. Un local commercial construit il y a plusieurs décennies peut nécessiter une mise à niveau de panneau électrique commercial avant même de recevoir la nouvelle installation, ce qui ajoute au budget initial mais évite des reprises de travaux coûteuses plus tard. À l'inverse, un local neuf ou récemment rénové permet souvent de réduire les coûts, puisque l'infrastructure de base est déjà en place et conforme aux normes actuelles.",
-      "Le type de commerce influence aussi fortement le prix d'une soumission électricien commercial Montréal. Un restaurant avec des équipements de cuisine à forte puissance, une clinique avec des exigences d'éclairage précises, ou une usine avec de la machinerie triphasée n'auront pas les mêmes besoins qu'un bureau administratif standard. C'est pourquoi il est risqué de se fier à un prix au pied carré générique trouvé en ligne : chaque devis électricien commercial Montréal doit être basé sur une évaluation réelle de vos installations et de vos besoins spécifiques.",
-      "Enfin, comparer plusieurs soumissions est une bonne pratique, à condition de comparer des éléments équivalents : licence RBQ, garanties offertes, délais d'exécution et détail des matériaux proposés. Un devis électricien commercial gratuit anormalement bas cache parfois des raccourcis sur la qualité des matériaux ou sur la conformité au Code de construction du Québec.",
-    ],
-  },
-  {
-    slug: "signes-mise-a-niveau-panneau-electrique-commercial",
-    title: "Mise à niveau de panneau électrique commercial : signes qu'il est temps d'agir",
-    category: "Installation commerciale",
-    excerpt: "Disjoncteurs qui sautent, lumières qui vacillent : les signaux à surveiller avant une panne électrique majeure.",
-    date: "2026-01-20",
-    keywords: [
-      "mise à niveau panneau électrique commercial",
-      "signes panneau électrique défectueux",
-      "remplacement panneau électrique entreprise",
-      "électricien construction commerciale Montréal",
-    ],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    content: [
-      "Un panneau électrique commercial vieillissant ou sous-dimensionné peut causer des interruptions coûteuses. Voici les signes les plus fréquents qui indiquent qu'une mise à niveau est nécessaire : disjoncteurs qui déclenchent régulièrement, lumières qui vacillent lors du démarrage d'équipements, et bourdonnement audible provenant du panneau.",
-      "Les commerces qui ajoutent de nouveaux équipements, agrandissent leur espace ou installent des bornes de recharge dépassent souvent la capacité de leur panneau existant. Une évaluation professionnelle permet de déterminer si une mise à niveau vers 200A, 400A ou plus est requise.",
-      "Ignorer ces signaux augmente les risques de panne, voire d'incendie électrique. Une inspection préventive et une thermographie infrarouge permettent de confirmer l'état réel de votre installation avant qu'un problème ne survienne.",
-      "Un autre indicateur fréquemment négligé est l'utilisation de rallonges permanentes pour compenser un manque de circuits disponibles. Si votre personnel doit régulièrement brancher des équipements sur des rallonges parce que le panneau ne fournit plus assez de circuits, c'est un signe clair que la capacité actuelle ne répond plus aux besoins réels de votre commerce.",
-      "La mise à niveau de panneau électrique commercial est aussi l'occasion d'anticiper la croissance de votre entreprise : ajout futur d'équipements, conversion à l'éclairage DEL, installation de bornes de recharge pour véhicules électriques ou agrandissement des espaces. Un électricien construction commerciale Montréal expérimenté évalue non seulement vos besoins actuels, mais aussi ceux des cinq à dix prochaines années.",
-      "Enfin, un remplacement de panneau électrique pour entreprise doit toujours être réalisé par un électricien licencié RBQ, avec les permis municipaux requis et une coordination avec Hydro-Québec. Une mise à niveau bien planifiée se réalise généralement en une à trois journées, souvent hors des heures d'ouverture.",
-    ],
-  },
-  {
-    slug: "economies-eclairage-del-commercial",
-    title: "Éclairage DEL commercial : combien peut-on économiser ?",
-    category: "Éclairage",
-    excerpt: "Un calcul concret des économies générées par la conversion à l'éclairage DEL pour un commerce ou un bureau.",
-    date: "2026-02-02",
-    keywords: [
-      "économies éclairage DEL commercial",
-      "conversion éclairage DEL commercial",
-      "éclairage écoénergétique entreprise Montréal",
-      "rentabilité éclairage DEL",
-    ],
-    relatedServiceSlug: "eclairage-commercial-ecoenergetique",
-    content: [
-      "L'éclairage représente souvent 20 % à 40 % de la facture d'électricité d'un commerce. Une conversion complète vers des luminaires DEL permet généralement de réduire cette portion de 40 % à 70 %, selon le type d'éclairage remplacé.",
-      "Au-delà de la consommation, les luminaires DEL durent de 3 à 5 fois plus longtemps que les tubes fluorescents, ce qui réduit également les coûts d'entretien et de remplacement.",
-      "L'ajout de capteurs de présence et de gradateurs intelligents permet de pousser les économies encore plus loin, particulièrement dans les entrepôts, stationnements et espaces à occupation variable. Plusieurs programmes d'Hydro-Québec offrent aussi des rabais aux entreprises qui font la conversion.",
-      "Pour bien évaluer la rentabilité d'une conversion éclairage DEL commercial, il faut considérer non seulement le prix de l'électricité économisée, mais aussi la réduction des coûts d'entretien. Un tube fluorescent standard dure généralement de 10 000 à 15 000 heures, alors qu'un luminaire DEL commercial de qualité peut atteindre 50 000 heures ou plus.",
-      "La qualité de l'éclairage joue aussi un rôle dans l'expérience client et la productivité des employés. Un éclairage écoénergétique entreprise Montréal bien conçu améliore le rendu des couleurs en magasin, réduit la fatigue visuelle dans les bureaux et peut même contribuer à la sécurité dans les entrepôts en éliminant les zones sombres.",
-      "Avant de lancer un projet de conversion, un audit d'éclairage réalisé par un électricien commercial permet d'identifier précisément quels luminaires remplacer en priorité et quelles zones bénéficieraient le plus d'un système d'éclairage intelligent commercial.",
-    ],
-  },
-  {
-    slug: "thermographie-infrarouge-detecter-problemes-avant-panne",
-    title: "Thermographie infrarouge : détecter les problèmes avant la panne",
-    category: "Entretien & sécurité",
-    excerpt: "Comment une caméra thermique permet de repérer les points chauds invisibles dans votre installation électrique.",
-    date: "2026-02-14",
-    keywords: [
-      "thermographie infrarouge électrique Montréal",
-      "audit électrique commercial Montréal",
-      "diagnostic électrique entreprise Montréal",
-      "inspection électrique préventive commercial",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    content: [
-      "La thermographie infrarouge est une technique d'inspection non invasive qui utilise une caméra thermique pour détecter les surchauffes anormales dans un panneau électrique, un disjoncteur ou une connexion.",
-      "Une connexion desserrée ou une surcharge de circuit génère de la chaleur bien avant qu'un problème visible n'apparaisse. En identifiant ces points chauds tôt, il est possible d'intervenir avant une panne, un bris d'équipement ou un risque d'incendie.",
-      "Pour les commerces et industries, une thermographie annuelle s'intègre bien dans un programme d'entretien électrique préventif, en complément des inspections visuelles et fonctionnelles.",
-      "Concrètement, une inspection de thermographie infrarouge électrique à Montréal se déroule pendant que l'installation est sous charge normale. Le technicien balaie le panneau principal, les disjoncteurs, les barres omnibus et les connexions critiques avec la caméra thermique, puis compare les températures relevées à des seuils reconnus par l'industrie.",
-      "Cette technologie est particulièrement précieuse pour les industries et entrepôts où un arrêt de production imprévu coûte cher chaque heure. Un diagnostic électrique entreprise Montréal basé sur la thermographie permet de planifier les réparations pendant un arrêt de production planifié plutôt que de subir une panne au pire moment possible.",
-      "Combinée à une inspection électrique préventive commercial régulière, la thermographie infrarouge permet de bâtir un historique de l'état de votre installation dans le temps, ce qui facilite la planification budgétaire des remplacements futurs.",
-    ],
-  },
-  {
-    slug: "guide-bornes-recharge-ve-entreprises-montreal",
-    title: "Bornes de recharge VE : guide pour les entreprises à Montréal",
-    category: "Réseaux & bornes de recharge",
-    excerpt: "Les étapes clés pour planifier et installer des bornes de recharge pour véhicules électriques dans votre commerce.",
-    date: "2026-02-28",
-    keywords: [
-      "borne de recharge véhicule électrique commercial",
-      "installation borne recharge VE Montréal",
-      "installation borne de recharge entreprise Montréal",
-    ],
-    relatedServiceSlug: "systemes-connectes-reseaux",
-    content: [
-      "De plus en plus d'entreprises montréalaises souhaitent offrir la recharge de véhicules électriques à leurs employés ou clients. La première étape consiste à évaluer la capacité électrique disponible au panneau principal.",
-      "Le choix du nombre de bornes, de leur puissance (niveau 2 ou rapide) et de leur emplacement dépend de l'achalandage prévu et du type de clientèle. Une planification adéquate permet aussi de prévoir l'ajout futur de bornes supplémentaires sans reprise majeure des travaux.",
-      "Des programmes de subvention existent pour les entreprises qui installent des bornes de recharge. Notre équipe peut vous accompagner dans l'évaluation technique et les démarches administratives.",
-      "Le choix entre une borne de recharge niveau 2 et une borne rapide dépend surtout du temps que les véhicules passent stationnés chez vous. Pour un stationnement d'employés où les véhicules restent tout le quart de travail, une borne de niveau 2 est généralement suffisante et plus économique à installer.",
-      "L'emplacement physique des bornes mérite aussi une réflexion sérieuse : proximité du panneau électrique, accessibilité pour les véhicules, protection contre les intempéries et signalisation claire. Une installation borne recharge VE Montréal bien pensée prévoit également l'ajout de capacité réservée au panneau pour l'avenir.",
-      "Enfin, une installation borne de recharge entreprise Montréal doit respecter les exigences du Code de construction du Québec en matière de protection électrique et de coordination avec Hydro-Québec lorsque la charge ajoutée dépasse la capacité du raccordement existant.",
-    ],
-  },
-  {
-    slug: "cablage-reseau-structure-ce-quun-commerce-doit-savoir",
-    title: "Câblage réseau structuré : ce qu'un commerce doit savoir",
-    category: "Réseaux & bornes de recharge",
-    excerpt: "Les bases du câblage réseau structuré pour assurer la fiabilité de vos systèmes informatiques et de sécurité.",
-    date: "2026-03-10",
-    keywords: ["câblage réseau structuré commercial", "câblage informatique entreprise Montréal"],
-    relatedServiceSlug: "systemes-connectes-reseaux",
-    content: [
-      "Un câblage réseau structuré bien planifié est la base de la fiabilité de vos systèmes informatiques, téléphoniques et de sécurité. Il doit être conçu en fonction du nombre de postes actuels, de la croissance future de votre entreprise et de l'emplacement des équipements réseau actifs.",
-      "L'utilisation d'un câblage de catégorie 6 ou 6A permet de supporter des débits élevés et de futures technologies sans devoir refaire l'installation à court terme.",
-      "Une salle de télécommunication bien organisée, avec identification claire des câbles et panneaux de brassage, facilite grandement l'entretien et le dépannage futurs.",
-      "Un câblage réseau structuré commercial mal planifié se traduit souvent par des ralentissements réseau difficiles à diagnostiquer et des pannes intermittentes. Un projet de câblage informatique entreprise Montréal bien exécuté part plutôt d'un plan clair : nombre de points réseau par zone, emplacement des équipements actifs, et parcours de câblage qui respecte les distances maximales recommandées.",
-      "La qualité de l'installation physique compte autant que la qualité du câble lui-même. Un câblage réseau structuré commercial doit éviter les sources d'interférence électromagnétique, comme le voisinage immédiat de gros moteurs, et respecter des rayons de courbure adéquats.",
-      "Enfin, prévoir une capacité excédentaire dès le départ évite d'avoir à refaire une partie du câblage informatique entreprise Montréal à chaque expansion de votre commerce.",
-    ],
-  },
-  {
-    slug: "frequence-entretien-electrique-preventif",
-    title: "Entretien électrique préventif : à quelle fréquence ?",
-    category: "Entretien & sécurité",
-    excerpt: "Quelle fréquence d'inspection adopter selon le type de commerce ou d'industrie pour éviter les pannes.",
-    date: "2026-03-22",
-    keywords: ["entretien électrique préventif", "entretien électrique commercial Montréal", "inspection électrique préventive commercial"],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    content: [
-      "La fréquence idéale d'entretien électrique préventif dépend du type d'établissement. Pour la majorité des commerces de détail et bureaux, une inspection annuelle est généralement suffisante.",
-      "Les environnements industriels, entrepôts à forte charge ou établissements avec équipements critiques devraient envisager une inspection semestrielle, incluant une thermographie infrarouge.",
-      "Un programme d'entretien régulier permet de détecter les signes d'usure avant qu'ils ne causent une panne, tout en documentant l'état de votre installation pour vos assurances et inspections municipales.",
-      "Au-delà de la fréquence, ce qui compte c'est le contenu de chaque visite d'entretien électrique commercial Montréal. Une inspection complète devrait couvrir le serrage des connexions dans le panneau principal, la vérification des dispositifs de protection, l'état des prises et interrupteurs dans les zones à fort achalandage, ainsi qu'un contrôle visuel du câblage apparent.",
-      "Certains événements devraient aussi déclencher une inspection électrique préventive commercial hors calendrier régulier : après un dégât d'eau, après l'ajout d'équipements à forte puissance, ou après une panne électrique inexpliquée.",
-      "Enfin, documenter chaque entretien électrique préventif dans un registre daté constitue une bonne pratique de gestion des risques, et facilite les discussions avec votre assureur en cas de réclamation.",
-    ],
-  },
-  {
-    slug: "certification-eclairage-urgence-obligations-legales-quebec",
-    title: "Certification d'éclairage d'urgence : obligations légales au Québec",
-    category: "Entretien & sécurité",
-    excerpt: "Ce que la loi québécoise exige en matière de test et de certification des systèmes d'éclairage d'urgence.",
-    date: "2026-04-03",
-    keywords: ["certification éclairage d'urgence Montréal", "obligations légales éclairage urgence Québec", "audit électrique commercial Montréal"],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    content: [
-      "Le Code de sécurité du Québec impose des exigences précises pour les systèmes d'éclairage d'urgence et les enseignes de sortie dans les bâtiments commerciaux : un test mensuel de fonctionnement et une vérification annuelle plus approfondie, incluant un test d'autonomie de la batterie.",
-      "Ces obligations visent à garantir une évacuation sécuritaire en cas de panne de courant. Le défaut de conformité peut entraîner des avis de non-conformité lors d'une inspection municipale ou du Service de sécurité incendie.",
-      "Notre équipe effectue la certification annuelle de vos systèmes d'éclairage d'urgence et vous remet un rapport détaillé, conforme aux exigences applicables.",
-      "Le test mensuel peut être réalisé par le personnel du commerce, mais doit être documenté : date, résultat, et mesures correctives si un luminaire d'urgence ne s'allume pas. C'est la vérification annuelle plus approfondie, généralement réalisée par un électricien commercial, qui confirme que l'ensemble du système répond aux exigences réglementaires.",
-      "Les propriétaires de commerces sous-estiment souvent l'ampleur de cette obligation : elle couvre les blocs d'éclairage d'urgence, les enseignes de sortie lumineuses, et parfois l'éclairage des escaliers d'issue selon la classification du bâtiment.",
-      "Faire certifier votre système par un électricien licencié RBQ présente un double avantage : la conformité légale est confirmée par un professionnel qualifié, et toute déficience détectée peut être corrigée immédiatement.",
-    ],
-  },
-  {
-    slug: "electricien-commercial-vs-residentiel-differences",
-    title: "Électricien commercial vs résidentiel : différences",
-    category: "Conseils",
-    excerpt: "Pourquoi les besoins électriques d'un commerce diffèrent de ceux d'une résidence, et l'importance d'un spécialiste.",
-    date: "2026-04-18",
-    keywords: ["électricien commercial industriel Montréal", "électricien pour entreprise Montréal", "meilleur électricien commercial Montréal"],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    content: [
-      "Les installations électriques commerciales diffèrent des installations résidentielles à plusieurs égards : charge électrique plus élevée, systèmes triphasés fréquents, exigences de code plus strictes et normes de sécurité incendie additionnelles.",
-      "Un électricien commercial doit aussi composer avec des contraintes d'exploitation particulières : minimiser les interruptions d'activité, respecter les horaires d'ouverture et coordonner les travaux avec d'autres corps de métier.",
-      "Faire appel à un électricien spécialisé en commercial et industriel, licencié RBQ, garantit une installation conforme et adaptée aux réalités de votre entreprise, plutôt qu'une approche générique.",
-      "Un des écarts les plus marqués concerne la formation et l'expérience requises. Un électricien commercial industriel Montréal doit maîtriser des notions absentes du résidentiel : systèmes triphasés, coordination des protections sur plusieurs panneaux en cascade, et lecture de plans d'ingénierie complexes.",
-      "Le rythme de travail diffère également. Un électricien pour entreprise Montréal doit souvent intervenir en dehors des heures d'ouverture et coordonner ses travaux avec plusieurs autres corps de métier sur un chantier de construction commerciale.",
-      "Enfin, les enjeux financiers ne sont pas comparables : une panne électrique dans une résidence est un inconvénient, alors qu'une panne dans un commerce ou une usine se traduit directement en perte de revenus. C'est pourquoi le meilleur électricien commercial Montréal pour votre entreprise est celui qui comprend ces enjeux d'affaires.",
-    ],
-  },
-  {
-    slug: "renovation-commerciale-par-ou-commencer-electricite",
-    title: "Rénovation commerciale : par où commencer côté électricité ?",
-    category: "Conseils",
-    excerpt: "Les étapes à suivre pour planifier l'électricité de votre projet de rénovation commerciale à Montréal.",
-    date: "2026-05-01",
-    keywords: ["électricien rénovation commerciale Montréal", "installation électrique commerciale Montréal", "câblage électrique commercial Montréal"],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    content: [
-      "Avant d'entreprendre une rénovation commerciale, il est essentiel d'évaluer l'état du panneau électrique existant et sa capacité à supporter les nouveaux besoins (équipements, éclairage, systèmes connectés).",
-      "Une bonne planification électrique en amont évite les surprises pendant les travaux : coordination avec l'entrepreneur général, obtention des permis nécessaires et respect du Code de construction du Québec.",
-      "Impliquer votre électricien commercial dès les premières étapes de conception permet d'optimiser l'emplacement des prises, de l'éclairage et des panneaux, tout en respectant votre budget et votre échéancier.",
-      "Une rénovation commerciale est aussi le moment idéal pour revoir des éléments qu'on ne changerait pas autrement : convertir l'éclairage existant vers des luminaires DEL commerciaux, ajouter des circuits dédiés pour de futurs équipements, ou prévoir la capacité nécessaire pour une borne de recharge de véhicule électrique.",
-      "La séquence des travaux mérite aussi une attention particulière. L'électricien rénovation commerciale Montréal doit généralement intervenir après la démolition mais avant la fermeture des murs et plafonds, pour installer le câblage électrique commercial Montréal aux bons endroits.",
-      "Enfin, pour un commerce qui reste partiellement ouvert pendant les rénovations, la planification doit prévoir le maintien de l'alimentation électrique des zones en exploitation pendant que les travaux se déroulent ailleurs dans le bâtiment.",
-    ],
-  },
-  {
-    slug: "panne-electrique-maison-7-signes-appeler-urgence",
-    title: "Panne électrique à la maison : 7 signes qui exigent un électricien d'urgence",
-    category: "Urgence électrique",
-    excerpt: "Étincelles, odeur de brûlé, disjoncteur qui saute : les signaux qui ne tolèrent aucun délai avant d'appeler un électricien.",
-    date: "2026-05-15",
-    keywords: [
-      "panne électrique",
-      "électricien d'urgence",
-      "électricien 24h",
-      "réparation électrique urgente",
-      "électricien près de moi",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    relatedLocalPageSlugs: ["urgence-electricien"],
-    content: [
-      "Toutes les pannes électriques ne se valent pas. Certaines peuvent attendre au lendemain matin, d'autres exigent un appel immédiat à un électricien d'urgence. Voici les signes qui ne devraient jamais être remis à plus tard.",
-      "Une odeur de brûlé près d'une prise, d'un interrupteur ou du panneau électrique est le signal le plus sérieux : elle indique souvent une surchauffe active et un risque d'incendie imminent. Coupez le disjoncteur concerné si vous pouvez le faire en toute sécurité, puis contactez un électricien 24h sans attendre.",
-      "Des étincelles visibles, des traces noircies autour d'une prise ou un bruit de grésillement provenant du panneau sont également des urgences électriques. Même si l'appareil semble encore fonctionner, un arc électrique s'est probablement déjà produit.",
-      "Un disjoncteur qui saute de façon répétée sur le même circuit signale un problème sous-jacent — surcharge, câblage endommagé ou appareil défectueux — qu'il vaut mieux ne pas contourner en réenclenchant sans cesse le même disjoncteur.",
-      "Une panne électrique totale ou partielle qui touche une partie seulement de la maison, des décharges électriques au toucher d'une poignée de porte ou d'un boîtier, ou de la rouille visible sur le panneau électrique principal complètent la liste des signaux à prendre au sérieux.",
-      "Dans tous ces cas, mieux vaut un électricien d'urgence qu'une réparation improvisée. Notre service de dépannage électrique est disponible 24 heures sur 24, 7 jours sur 7 pour intervenir rapidement, peu importe l'heure.",
-    ],
-  },
-  {
-    slug: "panne-electricite-hiver-quebec-que-faire",
-    title: "Panne d'électricité en hiver au Québec : que faire en attendant l'électricien",
-    category: "Urgence électrique",
-    excerpt: "Les bons réflexes à adopter pendant une panne électrique en hiver, le temps qu'un électricien d'urgence intervienne.",
-    date: "2026-05-22",
-    keywords: [
-      "panne électrique",
-      "urgence électricien",
-      "dépannage électrique",
-      "service électrique d'urgence",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    relatedLocalPageSlugs: ["urgence-electricien"],
-    content: [
-      "Une panne électrique en plein hiver québécois pose un risque particulier : le froid s'installe rapidement dans une résidence privée de chauffage. Avant de paniquer, quelques vérifications simples permettent de déterminer si le problème vient de votre installation ou du réseau d'Hydro-Québec.",
-      "Vérifiez d'abord si les voisins sont aussi touchés. Si c'est le cas, il s'agit probablement d'une panne de réseau et Hydro-Québec doit être contacté directement. Si seule votre résidence est touchée, le problème provient probablement de votre panneau électrique ou de votre branchement.",
-      "En attendant l'intervention d'un électricien d'urgence, limitez l'ouverture des portes et fenêtres pour conserver la chaleur, débranchez les appareils électroniques sensibles pour éviter les dommages lors du rétablissement du courant, et évitez d'utiliser des chaufferettes d'appoint sans surveillance.",
-      "Ne tentez jamais d'ouvrir vous-même le panneau électrique principal pour diagnostiquer le problème, surtout dans l'obscurité ou avec les mains humides. Cette étape doit être réservée à un maître électricien certifié RBQ.",
-      "Si vous détectez une odeur de brûlé, de la fumée ou des étincelles en plus de la panne, évacuez la zone concernée et traitez la situation comme une urgence électrique prioritaire, pas seulement comme une panne de courant.",
-      "Notre service électrique d'urgence répond aux appels de dépannage électrique 24 heures sur 24, 7 jours sur 7, incluant les nuits d'hiver les plus froides, partout dans la grande région métropolitaine.",
-    ],
-  },
-  {
-    slug: "odeur-brule-etincelles-panneau-rouille-dangers-electriques",
-    title: "Odeur de brûlé, étincelles, panneau rouillé : les dangers électriques à ne jamais ignorer",
-    category: "Urgence électrique",
-    excerpt: "Un tour d'horizon des signaux de danger électrique les plus fréquents et pourquoi ils exigent une réparation immédiate.",
-    date: "2026-05-29",
-    keywords: [
-      "panneau électrique réparation",
-      "danger électrique",
-      "court-circuit maison",
-      "odeur de brûlé électricité",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    relatedLocalPageSlugs: ["urgence-electricien"],
-    content: [
-      "Certains signaux électriques dans une maison sont faciles à négliger parce qu'ils semblent mineurs, alors qu'ils annoncent souvent un problème sérieux. Voici les principaux dangers électriques à surveiller et pourquoi ils méritent une réparation électrique rapide.",
-      "Une odeur de brûlé persistante, même légère, près d'une prise, d'un interrupteur ou du panneau électrique indique presque toujours une surchauffe en cours. Ce type de signal olfactif précède souvent de peu un début d'incendie électrique.",
-      "Les étincelles lors du branchement d'un appareil, ou des marques noircies autour d'une prise, révèlent qu'un arc électrique s'est produit. Même si la prise fonctionne toujours, elle reste dangereuse et doit être remplacée par un électricien.",
-      "Un panneau électrique rouillé, particulièrement à sa base, est un signe que l'humidité s'est infiltrée dans le boîtier au fil du temps. Cette corrosion peut compromettre les connexions principales et nécessite une inspection par un maître électricien avant que la situation ne s'aggrave.",
-      "Un court-circuit dans la maison se manifeste souvent par un bruit sec, un déclenchement immédiat du disjoncteur, ou parfois une odeur de brûlé localisée. Contrairement à une surcharge simple, un court-circuit demande généralement une réparation électrique le jour même.",
-      "Face à l'un de ces signaux, le bon réflexe est de couper le circuit concerné si possible et de faire appel à un électricien d'urgence plutôt que d'attendre que le problème se résolve de lui-même — ce qui n'arrive jamais en électricité.",
-    ],
-  },
-  {
-    slug: "premiere-visite-electricien-residentiel-a-quoi-sattendre",
-    title: "Électricien résidentiel : à quoi s'attendre lors d'une première visite",
-    category: "Résidentiel",
-    excerpt: "Ce qui se passe concrètement lors de la première visite d'un électricien résidentiel, de l'évaluation à la soumission.",
-    date: "2026-06-05",
-    keywords: [
-      "électricien résidentiel",
-      "installation électrique",
-      "réparation électrique",
-      "entrepreneur électricien",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    relatedLocalPageSlugs: ["electricien-sherbrooke", "electricien-laval", "electricien-terrebonne"],
-    content: [
-      "Faire appel à un électricien résidentiel pour la première fois soulève souvent des questions : combien de temps dure la visite, qu'est-ce qui sera vérifié, et à quel moment obtient-on un prix ? Voici à quoi s'attendre concrètement.",
-      "La visite commence généralement par une discussion sur le problème ou le projet : réparation électrique ponctuelle, ajout de circuits, rénovation ou mise à niveau de panneau. L'électricien pose des questions sur l'âge de la résidence, les rénovations passées et les symptômes observés, le cas échéant.",
-      "Suit ensuite une inspection visuelle du panneau électrique principal, des circuits concernés et parfois de certaines prises ou interrupteurs. Pour une réparation électrique simple, cette étape permet souvent d'identifier la cause dès la première visite.",
-      "Pour un projet plus important, comme une installation électrique complète ou une mise à niveau de panneau, l'électricien prend les mesures nécessaires et évalue la charge électrique globale de la résidence avant de préparer une soumission détaillée.",
-      "Un entrepreneur électricien sérieux explique toujours ses recommandations en langage clair, sans jargon inutile, et présente un devis écrit avant de commencer les travaux — jamais de facture surprise à la fin.",
-      "Que vous soyez à Laval, Sherbrooke ou Terrebonne, cette approche reste la même : évaluation honnête, explication claire et soumission transparente avant toute intervention.",
-    ],
-  },
-  {
-    slug: "mise-aux-normes-maison-ancienne-panneau-electrique",
-    title: "Mise aux normes électriques dans une maison ancienne : ce qu'il faut savoir",
-    category: "Résidentiel",
-    excerpt: "Panneau vieillissant, câblage désuet : ce que la mise aux normes électrique implique pour les maisons plus anciennes.",
-    date: "2026-06-12",
-    keywords: [
-      "mise à niveau panneau électrique",
-      "maître électricien",
-      "électricien certifié RBQ",
-    ],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    relatedLocalPageSlugs: ["electricien-sherbrooke", "electricien-terrebonne"],
-    content: [
-      "Les résidences plus anciennes, comme celles du Vieux-Nord à Sherbrooke ou du Vieux-Terrebonne, ont souvent un cachet architectural unique, mais leur installation électrique n'a pas toujours suivi le rythme des rénovations esthétiques.",
-      "Un panneau électrique à fusibles plutôt qu'à disjoncteurs, une capacité limitée à 60 ou 100 ampères, ou un câblage sans mise à la terre adéquate sont des signes fréquents qu'une mise aux normes est nécessaire.",
-      "La mise aux normes électrique d'une maison ancienne comprend généralement le remplacement du panneau, la mise à niveau du calibre de service, et parfois le remplacement de sections de câblage devenues dangereuses ou non conformes au Code de construction du Québec actuel.",
-      "Ce type de projet demande une attention particulière : un maître électricien expérimenté avec le bâti ancien sait repérer les pièges fréquents, comme des boîtes de jonction dissimulées derrière un mur fini ou un câblage modifié par un ancien propriétaire non qualifié.",
-      "Au-delà de la sécurité, une mise à niveau électrique permet souvent de supporter de nouveaux besoins : climatisation, bornes de recharge, ou simplement plus d'appareils électroniques que ce que l'installation d'origine n'avait jamais prévu.",
-      "Faire appel à un électricien certifié RBQ pour ce type de projet garantit non seulement la conformité, mais aussi une évaluation honnête de l'ampleur réelle des travaux nécessaires, sans surprise en cours de chantier.",
-    ],
-  },
-  {
-    slug: "cout-electricien-residentiel-laval-sherbrooke-terrebonne",
-    title: "Combien coûte un électricien résidentiel à Laval, Sherbrooke ou Terrebonne ?",
-    category: "Résidentiel",
-    excerpt: "Les facteurs qui font varier le prix d'un électricien résidentiel selon le type de travaux et la région.",
-    date: "2026-06-19",
-    keywords: [
-      "prix électricien résidentiel",
-      "soumission gratuite électricien",
-      "devis électricien",
-    ],
-    relatedServiceSlug: "entretien-diagnostic-securite-electrique",
-    relatedLocalPageSlugs: ["electricien-laval", "electricien-sherbrooke", "electricien-terrebonne"],
-    content: [
-      "Le prix d'un électricien résidentiel varie surtout selon la nature des travaux, bien plus que selon la ville. Une réparation électrique ponctuelle, comme le remplacement d'une prise ou d'un disjoncteur, se situe dans une fourchette différente d'une mise à niveau de panneau ou d'une installation électrique complète.",
-      "Trois facteurs influencent le plus le prix final : l'accessibilité du panneau et des circuits concernés, l'âge de la résidence (une maison plus ancienne demande souvent un diagnostic plus approfondi), et le nombre de circuits ou de points électriques à installer ou réparer.",
-      "À Laval, la densité résidentielle et la proximité des matériaux peuvent parfois réduire légèrement les délais d'intervention. À Sherbrooke et Terrebonne, le bâti plus varié — entre secteurs historiques et développements récents — influence davantage l'ampleur réelle des travaux que la localisation elle-même.",
-      "Un devis électricien sérieux détaille toujours la main-d'œuvre, les matériaux et l'échéancier prévu, peu importe la ville. Se méfier d'un prix anormalement bas : il cache souvent des raccourcis sur la qualité des matériaux ou la conformité au Code de construction du Québec.",
-      "La meilleure façon d'obtenir un prix juste reste une soumission gratuite basée sur une évaluation réelle de votre situation, plutôt que sur un tarif générique trouvé en ligne.",
-      "Notre équipe dessert Laval, Sherbrooke et Terrebonne avec la même transparence tarifaire : une soumission claire, livrée rapidement, avant tout engagement de votre part.",
-    ],
-  },
-  {
-    slug: "electricien-certifie-rbq-pourquoi-ca-change-tout",
-    title: "Électricien certifié RBQ : pourquoi la certification change tout pour votre projet",
-    category: "Conseils",
-    excerpt: "Ce que la licence RBQ garantit concrètement et pourquoi elle devrait être un critère non négociable.",
-    date: "2026-06-26",
-    keywords: [
-      "électricien certifié",
-      "maître électricien",
-      "entrepreneur électricien",
-      "licence RBQ",
-    ],
-    relatedServiceSlug: "installations-electriques-commerciales",
-    relatedLocalPageSlugs: ["electricien-laval", "electricien-sherbrooke", "electricien-terrebonne", "urgence-electricien"],
-    content: [
-      "Au Québec, tous les travaux électriques doivent être réalisés par un maître électricien détenant une licence de la Régie du bâtiment du Québec (RBQ). Cette exigence n'est pas qu'une formalité administrative : elle a des conséquences concrètes sur la qualité et la sécurité de vos travaux.",
-      "Un électricien certifié RBQ a suivi une formation reconnue, réussi les examens requis et doit maintenir sa certification à jour. Cette certification garantit une connaissance à jour du Code de construction du Québec, qui évolue régulièrement.",
-      "Faire affaire avec un entrepreneur électricien non certifié expose le propriétaire à plusieurs risques : travaux non conformes refusés par un inspecteur municipal, absence de garantie légale, et surtout un risque de sécurité réel en cas d'installation mal réalisée.",
-      "La certification a aussi un impact sur les assurances. En cas de sinistre lié à une installation électrique, un assureur peut refuser une réclamation si les travaux n'ont pas été réalisés par un électricien licencié, peu importe la qualité apparente du travail.",
-      "Pour un projet résidentiel, commercial ou une urgence électrique, vérifier la licence RBQ d'un entrepreneur avant de signer une soumission reste le réflexe le plus simple pour éviter des complications coûteuses plus tard.",
-      "Notre équipe de maîtres électriciens certifiés RBQ dessert Laval, Sherbrooke, Terrebonne et l'ensemble de la grande région métropolitaine, pour des projets planifiés comme pour les urgences électriques.",
-    ],
-  },
-  {
-    slug: "bornes-recharge-ve-residentiel-laval-terrebonne",
-    title: "Bornes de recharge VE à la maison : guide pour les propriétaires de Laval et Terrebonne",
-    category: "Réseaux & bornes de recharge",
-    excerpt: "Ce qu'il faut savoir avant d'installer une borne de recharge résidentielle pour véhicule électrique.",
-    date: "2026-07-03",
-    keywords: [
-      "borne de recharge VE résidentielle",
-      "installation borne recharge maison",
-    ],
-    relatedServiceSlug: "systemes-connectes-reseaux",
-    relatedLocalPageSlugs: ["electricien-laval", "electricien-terrebonne"],
-    content: [
-      "L'installation d'une borne de recharge résidentielle pour véhicule électrique commence toujours par une question simple : votre panneau électrique a-t-il la capacité disponible pour supporter cette charge additionnelle ?",
-      "Pour la majorité des résidences de Laval et Terrebonne construites au cours des vingt dernières années, une borne de niveau 2 standard s'installe généralement sans problème. Pour les résidences plus anciennes, en particulier celles avec un panneau de 100 ampères déjà bien chargé, une évaluation préalable est essentielle.",
-      "Le choix de l'emplacement de la borne dépend de la distance au panneau électrique, de l'accès au garage ou à l'entrée extérieure, et de la protection contre les intempéries si l'installation se fait à l'extérieur.",
-      "Un permis municipal est généralement requis pour ce type d'installation, en plus du respect des exigences du Code de construction du Québec concernant la protection différentielle et le calibre du circuit dédié.",
-      "Certains programmes de subvention provinciaux et fédéraux couvrent une partie des coûts d'installation d'une borne de recharge résidentielle — une vérification rapide avant les travaux permet parfois de réduire la facture finale.",
-      "Notre équipe évalue la capacité de votre panneau électrique, propose l'emplacement optimal et réalise l'installation complète de votre borne de recharge résidentielle, à Laval, Terrebonne et dans les environs.",
-    ],
-  },
+  coutInstallationCommerciale,
+  signesMiseANiveauPanneau,
+  economiesEclairageDel,
+  thermographieInfrarouge,
+  guideBornesEntreprises,
+  cablageReseauStructure,
+  frequenceEntretienPreventif,
+  certificationEclairageUrgence,
+  commercialVsResidentiel,
+  renovationCommerciale,
+  panneMaisonSignes,
+  panneHiverQuebec,
+  odeurBruleEtincelles,
+  premiereVisiteResidentiel,
+  miseAuxNormesMaisonAncienne,
+  coutResidentielLavalTerrebonne,
+  electricienCertifieRbq,
+  bornesResidentielLavalTerrebonne,
 ];
 
 export function getPostBySlug(slug: string) {
